@@ -5,6 +5,10 @@
 ## Integrantes del equipo
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
+Antonio Fernández Hermira AntonioFernandez1.
+Jiahao Li Huang
+Ginés Costa Fernández
+Javier Durán Sainz
 
 ## Objetivos del trabajo
 
