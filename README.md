@@ -1,6 +1,7 @@
 # **[Cortocircuito?]**
 
 [Descripción breve del proyecto a realizar (2-3 frases).]
+Prueba de fincionamiento del github
 
 ## **Integrantes del equipo**
 
