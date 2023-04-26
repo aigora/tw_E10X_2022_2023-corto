@@ -7,8 +7,8 @@ Prueba de fincionamiento del github
 
 [Nombres, apellidos, y usuario GitHub de los integrantes del equipo.]
 - Antonio Fernández Hermira (AntonioFernandez1).
-- Jiahao Li Huang.
-- Ginés Costa Fernández.(ginescosta)
+- Jiahao Li Huang (JiahaoliHuang).
+- Ginés Costa Fernández(ginescosta).
 - Javier Durán Sainz (javierduransainz).
 
 ## **Objetivos del trabajo**
