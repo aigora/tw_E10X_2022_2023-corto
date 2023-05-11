@@ -21,7 +21,7 @@ int main()
 {
 	float total_tipos[4];
 	float total_mes[4];
-	int i;
+	int i,eleccion,caso1;
 	float max_carbon,max_ciclo,max_coge,max_resi,min_carbon,min_resi,min_ciclo,min_coge;
 	strcpy(tips[0].tipos,"Carbon");
 	strcpy(tips[1].tipos,"Ciclo Combinado");
@@ -67,10 +67,96 @@ int main()
 	min_ciclo = Min(Min(Min(mes[0].ciclo, mes[1].ciclo), mes[2].ciclo), mes[3].ciclo);
     min_coge = Min(Min(Min(mes[0].coge, mes[1].coge), mes[2].coge), mes[3].coge);
     min_resi = Min(Min(Min(mes[0].resi, mes[1].resi), mes[2].resi), mes[3].resi);
-	printf("%.3f",min_coge);
 	//representar max min media porcentaje y tabla;
-	
-	
+	float pca, pci, pco, pr;
+	pca = (mes[0].carbon + mes[1].carbon + mes[2].carbon + mes[3].carbon) / 4.0;
+	pci = (mes[0].ciclo + mes[1].ciclo + mes[2].ciclo + mes[3].ciclo) / 4.0;
+	pco = (mes[0].coge + mes[1].coge + mes[2].coge + mes[3].coge) / 4.0;
+	pr = (mes[0].resi + mes[1].resi + mes[2].resi + mes[3].resi) / 4.0;
+	int volver=1;
+	do
+	{
+		printf("\nOpciones de la tabla:\n");
+		printf("1.Valor maximo\t 2.Valor minimo\t 3.Promedios\t 4.Salir\n0.Para volver al panel principal\n");
+    	scanf("%i",&eleccion);
+    	switch(eleccion)
+    	{
+    		case 1:
+    			printf("Qué valor maximo desea saber\n");
+    			printf("1.Carbon\t 2.Ciclo Combinado\t 3.Cogeneracion\t 4.Residuos no renovables\n");
+    			scanf("%i",&caso1);
+    			switch(caso1)
+    			{
+    				case 1:
+    					printf("%.3f",max_carbon);
+    				break;
+    				case 2:
+    					printf("%.3f",max_ciclo);
+    				break;
+    				case 3:
+    					printf("%.3f",max_coge);
+    				break;
+    				case 4:
+    					printf("%.3f",max_resi);
+    				break;
+    				case 0:
+    					printf("Volviendo\n");
+    				volver;
+				}
+			break;
+			case 2:
+    			printf("Qué valor minimo desea saber\n");
+    			printf("1.Carbon\t 2.Ciclo Combinado\t 3.Cogeneracion\t 4.Residuos no renovables\n");
+    			scanf("%i",&caso1);
+    			switch(caso1)
+    			{
+    				case 1:
+    					printf("%.3f",min_carbon);
+    				break;
+    				case 2:
+    					printf("%.3f",min_ciclo);
+    				break;
+    				case 3:
+    					printf("%.3f",min_coge);
+    				break;
+    				case 4:
+    					printf("%.3f",min_resi);
+    				break;
+    				case 0:
+    					printf("Volviendo\n");
+    				volver;
+				}
+			break;
+				case 3:
+    			printf("Qué promedio desea saber\n");
+    			printf("1.Carbon\t 2.Ciclo Combinado\t 3.Cogeneracion\t 4.Residuos no renovables\n");
+    			scanf("%i",&caso1);
+    			switch(caso1)
+    			{
+    				case 1:
+    					printf("%.3f",pco);
+    				break;
+    				case 2:
+    					printf("%.3f",pci);
+    				break;
+    				case 3:
+    					printf("%.3f",pco);
+    				break;
+    				case 4:
+    					printf("%.3f",pr);
+    				break;
+    				case 0:
+    					printf("Volviendo\n");
+    				volver;
+				}
+			break;
+				case 4: 
+				{
+					return 1;
+				}
+		}
+}	while (volver);
+
 	return 0;
 }
 float Max(float a, float b) 
