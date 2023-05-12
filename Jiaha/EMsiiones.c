@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <string.h>
+#include <math.h>
 typedef struct
 {
 	char mes[20];
@@ -17,11 +18,13 @@ emision tips[5];
 datos mes[5];
 float Max(float a, float b);
 float Min(float a, float b);
+float porcentaje(float valor,float total);
 int main()
 {
 	float total_tipos[4];
 	float total_mes[4];
-	int i,eleccion,caso1,panel,messeleccionado,r;
+	float total;
+	int i,eleccion,caso1,panel,messeleccionado,r,unidades,entero,enter;
 	float max_carbon,max_ciclo,max_coge,max_resi,min_carbon,min_resi,min_ciclo,min_coge;
 	strcpy(tips[0].tipos,"Carbon");
 	strcpy(tips[1].tipos,"Ciclo Combinado");
@@ -59,6 +62,7 @@ int main()
         total_tipos[2] += mes[i].coge;
         total_tipos[3] += mes[i].resi;
 	}
+	total=mes[0].carbon + mes[1].carbon + mes[2].carbon + mes[3].carbon+mes[0].ciclo + mes[1].ciclo + mes[2].ciclo + mes[3].ciclo+mes[0].coge + mes[1].coge + mes[2].coge + mes[3].coge+mes[0].resi + mes[1].resi + mes[2].resi + mes[3].resi;
 	max_carbon = Max(Max(Max(mes[0].carbon, mes[1].carbon), mes[2].carbon), mes[3].carbon);
 	max_ciclo = Max(Max(Max(mes[0].ciclo, mes[1].ciclo), mes[2].ciclo), mes[3].ciclo);
     max_coge = Max(Max(Max(mes[0].coge, mes[1].coge), mes[2].coge), mes[3].coge);
@@ -73,6 +77,8 @@ int main()
 	pci = (mes[0].ciclo + mes[1].ciclo + mes[2].ciclo + mes[3].ciclo) / 4.0;
 	pco = (mes[0].coge + mes[1].coge + mes[2].coge + mes[3].coge) / 4.0;
 	pr = (mes[0].resi + mes[1].resi + mes[2].resi + mes[3].resi) / 4.0;
+	//
+	float porcentaje_carbono = porcentaje(total_tipos[0],total);
 	int volver=1;
 			printf("Que quieres hacer\n1.Opciones de tabla\t2.Tabla del mes\n");
 			scanf("%i",&panel);
@@ -175,20 +181,47 @@ case 2:
 	        break;
 	    }
 case 3:
-				printf("%s\n", meses[0].mes);
+				printf("-%s\n", meses[0].mes);
 	            printf("%s\t\t%s\t\t%s\t\t%s\n",tips[0].tipos,tips[1].tipos,tips[2].tipos,tips[3].tipos);
 	            printf("%.3f\t%.3f\t\t%.3f\t\t%.3f\n",mes[0].carbon,mes[0].ciclo,mes[0].coge,mes[0].resi);
-	            printf("%s\n", meses[1].mes);
+	            printf("-%s\n", meses[1].mes);
 	            printf("%s\t\t%s\t\t%s\t\t%s\n",tips[0].tipos,tips[1].tipos,tips[2].tipos,tips[3].tipos);
 	            printf("%.3f\t%.3f\t\t%.3f\t\t%.3f\n",mes[1].carbon,mes[1].ciclo,mes[1].coge,mes[1].resi);
-	            printf("%s\n", meses[2].mes);
+	            printf("-%s\n", meses[2].mes);
 	            printf("%s\t\t%s\t\t%s\t\t%s\n",tips[0].tipos,tips[1].tipos,tips[2].tipos,tips[3].tipos);
 	            printf("%.3f\t%.3f\t\t%.3f\t\t%.3f\n",mes[2].carbon,mes[2].ciclo,mes[2].coge,mes[2].resi);
-	            printf("%s\n", meses[3].mes);
+	            printf("-%s\n", meses[3].mes);
 	            printf("%s\t\t%s\t\t%s\t\t%s\n",tips[0].tipos,tips[1].tipos,tips[2].tipos,tips[3].tipos);
 	            printf("%.3f\t%.3f\t\t%.3f\t\t%.3f\n",mes[3].carbon,mes[3].ciclo,mes[3].coge,mes[3].resi);
-	return 0;
+break;
+case 4:
+	printf("El porcentaje de la emision de carbon en el mes de enero es de %.2f",porcentaje(total_tipos[0],total));
+break;
+case 5:
+	//Esto no me sale 
+	entero = (total_tipos[0]);
+    if (entero > 0 && entero % 20000 == 0)//Nos aseguramos de que sea positivo y que sea divisible al salto que queramos
+	{
+        unidades = entero/20000;
+        printf("%i",entero);
+    }
+    for (i = 0; i < unidades; i++) {
+        printf("X");
+    }
+    printf("\n");
+    
+    enter = round(total_tipos[1]);
+    if (enter > 0 && enter % 20000 == 0)//Nos aseguramos de que sea positivo y que sea divisible al salto que queramos
+	{
+        unidades = enter / 20000;
+    }
+    for (i = 0; i < unidades; i++) {
+        printf("X");
+    }
+    printf("\n");
+break;
 }
+return 0;
 }
 float Max(float a, float b) 
 {
@@ -211,5 +244,11 @@ float Min(float a, float b)
 	{
         return b;
     }
+}
+float porcentaje(float valor,float total)
+{
+	float percen;
+	percen=(float)(valor/total)*100;
+	return percen;
 }
 
