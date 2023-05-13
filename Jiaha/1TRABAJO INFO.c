@@ -7,10 +7,10 @@ typedef struct
 	int hora;
 	int real;
 	int prevista;
-	int programada;	
+	int programada;
 }	energia;
 energia *enero;
-void vaciar(char temp);
+void vaciar(char temp[]);
 void copiar(char temp[],int i);
 int main ()
 {
@@ -27,7 +27,7 @@ int main ()
 	}
 	while (!feof(f))
 	{
-		fgets(temp;1000,f);
+		fgets(temp,1000,f);
 		cont++;
 	}
 	rewind(f);
@@ -49,15 +49,15 @@ int main ()
 				temp[j]=aux;
 			}
 		}
-		copiar(temp,i); 
+		copiar(temp,i);
 		fgets(temp,50,f);
 		enero[i].real=atoi(temp);
 		printf("Hora %c real %i",enero[i].hora,enero[i].real);
 		}
 	return 0;
-	
+
 }
-void vaciar(char temp)
+void vaciar(char temp[])
 {
 	int i;
 	for(i=0;i<1000;i++)
@@ -74,5 +74,5 @@ void copiar(char temp[],int i)
 		printf("error\n");
 		return -1;
 	}
-	strcpy(enero[i].hora,temp)
+	strcpy(enero[i].hora,temp);
 }
