@@ -198,22 +198,27 @@ case 4:
 	printf("El porcentaje de la emision de carbon en el mes de enero es de %.2f",porcentaje(total_tipos[0],total));
 break;
 case 5:
-	//Esto no me sale 
+	//Esto no me sale
+	unidades=0;
 	entero = (total_tipos[0]);
-    if (entero > 0 && entero % 20000 == 0)//Nos aseguramos de que sea positivo y que sea divisible al salto que queramos
+	printf("%i\n",entero);
+    if (entero > 0)//Nos aseguramos de que sea positivo y que sea divisible al salto que queramos
 	{
         unidades = entero/20000;
         printf("%i",entero);
     }
+    printf("%i",unidades);
     for (i = 0; i < unidades; i++) {
         printf("X");
     }
     printf("\n");
-    
+
     enter = round(total_tipos[1]);
-    if (enter > 0 && enter % 20000 == 0)//Nos aseguramos de que sea positivo y que sea divisible al salto que queramos
+    printf("%i\n",enter);
+    if (enter > 0)//Nos aseguramos de que sea positivo y que sea divisible al salto que queramos
 	{
         unidades = enter / 20000;
+        printf("%i\n",unidades);
     }
     for (i = 0; i < unidades; i++) {
         printf("X");
@@ -223,23 +228,23 @@ break;
 }
 return 0;
 }
-float Max(float a, float b) 
+float Max(float a, float b)
 {
-    if (a > b) 
+    if (a > b)
 	{
         return a;
-    } 
+    }
 	else
 	{
         return b;
     }
 }
-float Min(float a, float b) 
+float Min(float a, float b)
 {
-    if (a < b) 
+    if (a < b)
 	{
         return a;
-    } 
+    }
 	else
 	{
         return b;
