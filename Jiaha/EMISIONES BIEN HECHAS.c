@@ -29,7 +29,7 @@ int main()
 	FILE *pf;
 	dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
 	{2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
-	pf=fopen("C:/Users/jiaha/Downloads/asd2.csv","r");
+	pf=fopen("C:/Users/Mar/Downloads/asd2.csv","r");
 	if (pf==NULL)
 	{
 		printf("Error al abrir el archivo");
@@ -55,15 +55,16 @@ int main()
 			break;
 			}
 		}
-		for (i=0; i<cantidadenergias; i++)  
+		for (i=0; i<cantidadenergias; i++)
         {
+            //Creo que sé por qué el carbón se guarda mal. Mañana en llamada te explico. Creo que tengo la solución pero se tarda un poquillo.
             fscanf(pf, "%[^,]s", nombreenergia[i].nombre);
-            for (j=0; j<24; j++) // 24 datos en cada energia 
+            for (j=0; j<24; j++) // 24 datos en cada energia
             {
                 fscanf(pf, ",%lf", &datos[j].energia2[i]);
 		    }
         }
-        
+
         			int panel;
 					int cantidadenergia=9;
 					double suma[9] = {0,0,0,0,0,0,0,0,0};
@@ -74,7 +75,7 @@ int main()
 					{
 					case 1:
 							{
-								
+
 								 for (i = 0; i < cantidadenergias; i++)
 							        {
 							            for (j = 0; j < 12; j++)
@@ -84,13 +85,17 @@ int main()
 							        }
 							        ranking(suma, cantidadenergias, nombreenergia);
 						            printf("Ranking de emisiones de mayor a menor 2021:\n");
+
 						            for (i = 0; i < cantidadenergias; i++)
 						            {
-						                printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);// aqui el carbon me sale pegado a lo otro
+						                printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);    // aqui el carbon me sale pegado a lo otro
+                                                                                                // He puesto un comentario donde creo que está el "error"
 						            }
+
+
 						        for (i = 0; i < cantidadenergias; i++)//apartir de aqui el 2022 empieza a fallar
 							        {
-							            for (j =0; j < 12; j++)
+							            for (j =12; j < 24; j++) //2 errores, el primero sé solucionarlo pero el segundo es una fumada: mañana en llamada te cuento.
 							            {
 							                suma2[i] += datos[j].energia2[i];
 							            }
@@ -110,7 +115,7 @@ int main()
 						}
 					case 3:
 						{
-							diferencias(datos,cantidadenergias,nombreenergia); ///falta 2022
+							diferencias(datos,cantidadenergias,nombreenergia); //falta 2022
 					break;
 						}
 					}
@@ -142,33 +147,52 @@ void ranking(double suma[], int n, nombre nombreenergia[])
         }
     }
 }
-void mesmax(data datos[],int cantidadenergias,nombre nombreenergia[]) 
+void mesmax(data datos[],int cantidadenergias,nombre nombreenergia[])
 {
     int i, j;
     double maxEmision;
     int maxMes;
-
-    for (i=0;i<cantidadenergias;i++) 
+    printf("EN 2021\n");
+    for (i=0;i<cantidadenergias;i++)
 	{
         maxEmision=datos[0].energia2[i];
         maxMes = 0;
 
-        for(j=0;j<12;j++) 
+        for(j=0;j<12;j++)
 		{
-            if (datos[j].energia2[i] > maxEmision) 
+            if (datos[j].energia2[i] > maxEmision)
+			{
+                maxEmision = datos[j].energia2[i];
+                maxMes = j;
+            }
+        }
+
+        printf("%s", nombreenergia[i].nombre);
+        printf("\nMes con mayor emision: %s\n", obtmes(maxMes+1));
+        printf("Emision: %.3f\n", maxEmision);
+    }
+    printf("EN 2022\n");
+    for (i=0;i<cantidadenergias;i++)
+	{
+        maxEmision=datos[12].energia2[i];
+        maxMes = 0;
+
+        for(j=12;j<24;j++)
+		{
+            if (datos[j].energia2[i] > maxEmision)
 			{
                 maxEmision = datos[j].energia2[i];
                 maxMes = j;
             }
         }
         printf("%s", nombreenergia[i].nombre);
-        printf("\nMes con mayor emision: %s\n", obtmes(maxMes+1));
+        printf("\nMes con mayor emision: %s\n", obtmes(maxMes-11));
         printf("Emision: %.3f\n", maxEmision);
     }
 }
-const char* obtmes(int mes) 
+const char* obtmes(int mes)
 {
-    switch (mes) 
+    switch (mes)
 	{
         case 1: return "Enero";
         case 2: return "Febrero";
@@ -190,6 +214,7 @@ void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[])
 	int i,j;
 	double diferencia;
 	printf("La produccion de CO2 de:\n");
+	printf("EN 2021\n");
 	for(i=0;i<cantidadenergias;i++)
 	{
 		if (datos[0].energia2[i]>datos[11].energia2[i])
@@ -200,6 +225,20 @@ void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[])
 		else
 		{
 			diferencia=datos[11].energia2[i]-datos[0].energia2[i];
+			printf("%s ha aumentado %.3f",nombreenergia[i].nombre,diferencia);
+		}
+	}
+	printf("\nEN 2022\n");
+	for(i=0;i<cantidadenergias;i++)
+	{
+		if (datos[12].energia2[i]>datos[23].energia2[i])
+		{
+			diferencia=datos[12].energia2[i]-datos[23].energia2[i];
+			printf("%s ha disminuido %.3f",nombreenergia[i].nombre,diferencia);
+		}
+		else
+		{
+			diferencia=datos[23].energia2[i]-datos[12].energia2[i];
 			printf("%s ha aumentado %.3f",nombreenergia[i].nombre,diferencia);
 		}
 	}
