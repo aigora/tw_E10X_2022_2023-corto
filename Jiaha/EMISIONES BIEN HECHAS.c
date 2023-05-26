@@ -66,8 +66,8 @@ int main()
         
         			int panel;
 					int cantidadenergia=9;
-					double suma[i] = {0,0,0,0,0,0,0,0,0};
-					double suma2[i] = {0,0,0,0,0,0,0,0,0};
+					double suma[9] = {0,0,0,0,0,0,0,0,0};
+					double suma2[9] = {0,0,0,0,0,0,0,0,0};
 					printf("Opciones a realizar\n1-Clasificacion produccion de CO2\n2-Maximo emision alcanzado por mes\n3-Progreso respecto CO2\n");
 					scanf("%i",&panel);
 					switch (panel)
