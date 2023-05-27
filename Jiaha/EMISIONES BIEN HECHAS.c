@@ -27,6 +27,7 @@ int main()
 {
 	nombre nombreenergia[9];
 	FILE *pf;
+
 	dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
 	{2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
 	pf=fopen("C:/Users/Mar/Downloads/asd2.csv","r");
@@ -54,6 +55,7 @@ int main()
 			{
 			break;
 			}
+
 		}
 		for (i=0; i<cantidadenergias; i++)
         {
@@ -64,6 +66,7 @@ int main()
                 fscanf(pf, ",%lf", &datos[j].energia2[i]);
 		    }
         }
+        fclose(pf);
 
         			int panel;
 					int cantidadenergia=9;
@@ -92,6 +95,38 @@ int main()
                                                                                                 // He puesto un comentario donde creo que está el "error"
 						            }
 
+						            pf=fopen("C:/Users/Mar/Downloads/asd2.csv","r");
+                                    if (pf==NULL)
+                                    {
+                                        printf("Error al abrir el archivo");
+                                        return -1;
+                                    }
+                                    else
+                                    {
+                                        contador=0;
+                                        printf("El archivo se ha abierto correctamente\n");
+                                        while(fscanf(pf,"%c",&x)!=EOF)
+                                        {
+                                            if(x=='\n')
+                                            {
+                                                contador++;
+                                            }
+                                            if (contador==5)
+                                            {
+                                                break;
+                                            }
+
+                                        }
+                                        for (i=0; i<cantidadenergias; i++)
+                                        {
+            //Creo que sé por qué el carbón se guarda mal. Mañana en llamada te explico. Creo que tengo la solución pero se tarda un poquillo.
+                                            fscanf(pf, "%[^,]s", nombreenergia[i].nombre);
+                                                for (j=0; j<24; j++) // 24 datos en cada energia
+                                                {
+                                                    fscanf(pf, ",%lf", &datos[j].energia2[i]);
+                                                }
+                                        }
+
 
 						        for (i = 0; i < cantidadenergias; i++)//apartir de aqui el 2022 empieza a fallar
 							        {
@@ -100,6 +135,8 @@ int main()
 							                suma2[i] += datos[j].energia2[i];
 							            }
 							        }
+
+
 							        ranking(suma2, cantidadenergias, nombreenergia);
 						            printf("\n\nRanking de emisiones de mayor a menor 2022:\n");
 						            for (i = 0; i < cantidadenergias; i++)
@@ -122,6 +159,7 @@ int main()
 	fclose(pf);
 	return 0;
 	}
+}
 }
 
 void ranking(double suma[], int n, nombre nombreenergia[])
