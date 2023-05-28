@@ -31,7 +31,8 @@ void diferencias(data datos[], int cantidadenergias, nombre nombreenergia[]);
 const char *obtmes(int mes);
 void analizarVariacion(float precios[], int numAnos);
 void calcularPromedio(float precios[], int numAnos);
-int main() {
+int main() 
+{
     float precios[6] = {60.6,64.4,53.41, 40.38, 118.69, 204.35};
     int numAnos = sizeof(precios) / sizeof(float);
 	printf("Variacion de coste\n");
@@ -42,29 +43,34 @@ int main() {
     calcularPromedio(precios, numAnos);
     return 0;
 }
-void analizarVariacion(float precios[], int numAnos) {
-    float variacionTotal = 0.0;
+void analizarVariacion(float precios[], int numAnos) 
+{
+    float variacionTotal=0.0;
 
     for (int i = 1; i < numAnos; i++) {
-        float variacion = ((precios[i] - precios[i - 1]) / precios[i - 1]) * 100;
+        float variacion = ((precios[i]-precios[i-1]) / precios[i - 1]) * 100;
         variacionTotal += variacion;
 
-        if (variacion < 0) {
+        if (variacion < 0) 
+		{
             printf("El coste de MWh %d a %d: ha dismunuido %.2f%%\n", 2017 + i - 1, 2017 + i, -variacion);
         } else {
             printf("El coste de MWh %d a %d: ha aumentado %.2f%%\n", 2017 + i - 1, 2017 + i, variacion);
         }
     }
 
-    if (variacionTotal < 0) {
+    if (variacionTotal < 0) 
+	{
         printf("El coste de MWh total ha disminuido %.2f%%\n", -variacionTotal);
     } else {
         printf("El coste de MWh total ha aumentado %.2f%%\n", variacionTotal);
     }
 }
-void calcularPromedio(float precios[], int numAnos) {
+void calcularPromedio(float precios[], int numAnos) 
+{
     float sumaPrecios = 0.0;
-    for (int i = 0; i < numAnos; i++) {
+    for (int i=0;i<numAnos;i++) 
+	{
         sumaPrecios += precios[i];
     }
     float promedioPrecios = sumaPrecios / numAnos;
