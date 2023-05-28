@@ -487,8 +487,8 @@ case 2:
 	}
 }
 
-                    case 3:
-                        {
+case 3:
+{
                             //int cual;
                             //printf("\t3 .1-Generacion 2019-2020");
                             //printf("\t3 .1-Generacion 2019-2020");//Qué se supone que hace esto?
