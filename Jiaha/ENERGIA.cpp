@@ -71,7 +71,7 @@ int main()
 					int cantidadenergia=17;
 					double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 					double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-					printf("Opciones a realizar\n1-Clasificacion produccion de Energia\n2-Energia representado en porcentaje\n3-Progreso respecto CO2\n");
+					printf("Opciones a realizar\n1-Clasificacion produccion de Energia\n2-Energia representado en porcentaje\n");
 					scanf("%i",&panel);
 					switch (panel)
 					{
