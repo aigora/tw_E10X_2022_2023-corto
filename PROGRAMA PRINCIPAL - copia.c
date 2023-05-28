@@ -13,6 +13,7 @@ typedef struct data
 {
 	double emision[9];
 	double energia2[9];
+	double energia3[17];
 }data;
 typedef struct resultadosguardados
 {
@@ -29,6 +30,8 @@ void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[]);
 const char* obtmes(int mes);
 void rankingEstructuras(double suma[], int n, nombre nombreenergia[]);
 void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenergia[]);
+void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
+void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
 int main()
 {
 	int eleccion;
@@ -47,6 +50,7 @@ int main()
 	printf("\n\nQue desesa hacer\n");
 	printf("1-Emisiones CO2\n");
 	printf("2-Estructura de la potencia instalada con y sin CO2\n");
+	printf("3-Generacion de todos tipos de energias\n");
 	scanf("\t%i",&eleccion);
 	switch (eleccion)
 	{
@@ -112,13 +116,14 @@ int main()
 									       			minimo(datos,cantidadenergias,nombreenergia);
 									       			int algo;
 									       			printf("\nPara ver conclusion pulse 1\n");
-									       			scanf("\t%i",&algo);
+									       			scanf("\t%i\n",&algo);
 									       			switch(algo)
 									       			case 1:
 									       				{
 									       					float diferenciatotal=datos[0].emision[7]-datos[15].emision[7];
-									       					fprintf(SALIDA,"Conclusion: La comparacion de emision a principios de año comparado\ncon la llegada del estado de alarma la emision\nha bajado un total de  %.3f:",diferenciatotal);
-									       					printf("\t\tLa comparacion de emision a principios de año comparado\ncon la llegada del estado de alarma la emision\nha bajado un total de  %.3f:",diferenciatotal);
+									       					float porcen=(datos[0].emision[7]/datos[15].emision[7])*100;
+									       					fprintf(SALIDA,"Conclusion: La comparacion de emision a principios de año comparado\ncon la llegada del estado de alarma la emision\nha bajado un total de  %.3f un %.3f%%:",diferenciatotal,porcen);
+									       					printf("\t\tLa comparacion de emision a principios de año comparado\ncon la llegada del estado de alarma la emision\nha bajado un total de  %.3fun %.3f%%:",diferenciatotal,porcen);
 									       			break;
 														}
 											break;
@@ -284,7 +289,7 @@ int main()
 
 
 	}//switch de covid
-                                            case 2: //Esto es nuevo o lo subí esta mañana?
+                                            case 2:
                                                 {
                                                     nombre nombreenergia[19];
 	FILE *Estructura;
@@ -516,6 +521,7 @@ int main()
 							diferenciasEstructuras(datos,cantidadenergias,nombreenergia);
 					break;
 						}
+
                     default:
                     {
                         printf("Opción no valida, volviendo al menu principal");
@@ -525,7 +531,13 @@ int main()
 	return 0;
 	}
 }
-                                                }
+}
+                    case 3:
+                        {
+                            int cual;
+                            printf("\t3 .1-Generacion 2019-2020");
+                            printf("\t3 .1-Generacion 2019-2020");//Qué se supone que hace esto?
+                        }
 	}
 	}
 	}
@@ -917,4 +929,46 @@ void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenerg
 		}
 	}
 	fclose(SALIDA);
+}
+
+/// AQUI ENERGIAS
+void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
+{
+    double porcentajes[17];
+    int i,j;
+    for ( i = 0; i < 16; i++)
+    {
+        double porcentaje = (datos[0].energia3[i] + datos[1].energia3[i] + datos[2].energia3[i] + datos[3].energia3[i] + datos[4].energia3[i] +
+                            datos[5].energia3[i] + datos[6].energia3[i] + datos[7].energia3[i] + datos[8].energia3[i] + datos[9].energia3[i] +
+                            datos[10].energia3[i] + datos[11].energia3[i]) / total * 100.0;
+
+        porcentajes[i] = porcentaje;
+    }
+
+    printf("\n\tPorcentaje de cada energia en el total de 2019:\n");
+    for ( i = 0; i < 15; i++)
+    {
+        printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
+    }
+}
+void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
+{
+    double porcentajes[17];
+
+    int i,j;
+
+    for ( i = 0; i < 16 ;i++)
+    {
+        double porcentaje = (datos[12].energia3[i] + datos[13].energia3[i] + datos[14].energia3[i] + datos[15].energia3[i] + datos[16].energia3[i] +
+                            datos[17].energia3[i] + datos[18].energia3[i] + datos[19].energia3[i] + datos[20].energia3[i] + datos[21].energia3[i] +
+                            datos[22].energia3[i] + datos[23].energia3[i]) / total * 100.0;
+
+        porcentajes[i] = porcentaje;
+    }
+
+    printf("\n\tPorcentaje de cada energia en el total de 2020:\n");
+    for (i = 0; i < 15; i++)
+    {
+        printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
+    }
 }
