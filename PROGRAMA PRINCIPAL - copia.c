@@ -32,6 +32,10 @@ void rankingEstructuras(double suma[], int n, nombre nombreenergia[]);
 void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenergia[]);
 void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
 void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
+void analizarVariacion(float precios[], int numAnos);
+void calcularPromedio(float precios[], int numAnos);
+void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
+void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
 int main()
 {
 	int eleccion;
@@ -45,13 +49,15 @@ int main()
         return -1;
     }
 	printf("Bienvenido al panel principal");
-	while (eleccion!=4)
+	while (eleccion!=5)
 	{
 	printf("\n\nQue desesa hacer\n");
 	printf("1-Emisiones CO2\n");
 	printf("2-Estructura de la potencia instalada con y sin CO2\n");
 //	printf("3-Generacion de todos tipos de energias\n");
 	printf("3-Generacion de energias renovables\n");
+	printf("4-Energias producidas\n");
+	printf("5-Salir");
 	scanf("\t%i",&eleccion);
 	switch (eleccion)
 	{
@@ -604,10 +610,430 @@ case 3:
 												        break;
                         }
 	}
-	}
-	}
-	fclose(SALIDA);
+case 4:
+{
+    int ree;
+    printf("1-Produccion de energias 2019/2020\n");
+    printf("2-Produccion de energias 2021/2022\n");
+    printf("3-Variacion del precio del mercado\n");
+    scanf("%i",ree);
+    switch(ree)
+    {
+        case 1:
+        {
+            nombre nombreenergia[18];
+            FILE *o;
+
+            dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
+            {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
+            o=fopen("C:/Users/Mar/Downloads/Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+            if (o==NULL)
+            {
+                printf("Error al abrir el archivo");
+                return -1;
+            }
+            else
+            {
+            printf("El archivo se ha abierto correctamente\n");
+            data datos[24];
+            int i=0;
+            int j=0;
+            int contador=0;
+            char x;
+            int cantidadenergias=17;
+            while(fscanf(o,"%c",&x)!=EOF)
+            {
+                if(x=='\n')
+                {
+                    contador++;
+                }
+                if (contador==5)
+                {
+                break;
+                }
+
+            }
+            for (i=0; i<cantidadenergias; i++)
+            {
+                fscanf(o, "%[^,]s", nombreenergia[i].nombre);
+                for (j=0; j<24; j++)
+                {
+                    fscanf(o, ",%lf", &datos[j].energia3[i]);
+                }
+            }
+            fclose(o);
+            int panel;
+            int cantidadenergia=17;
+            double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            printf("Opciones a realizar\n1-Clasificacion produccion de Energia\n2-Energia representado en porcentaje\n");
+            scanf("%i",&panel);
+            switch (panel)
+            {
+                case 1:
+                {
+                    for (i = 0; i < cantidadenergias; i++)
+                    {
+                        for (j = 0; j < 12; j++)
+                        {
+                            suma[i] += datos[j].energia3[i];
+                        }
+                    }
+                    ranking(suma, cantidadenergias, nombreenergia);
+                    printf("Ranking de emisiones de mayor a menor 2019:\n");
+                    for (i = 0; i < cantidadenergias; i++)
+                    {
+                        printf("%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
+                    }
+                    o=fopen("C:/Users/jiaha/Downloads/Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+                    if (o==NULL)
+                    {
+                        printf("Error al abrir el archivo");
+                        return -1;
+                    }
+                    else
+                    {
+                        contador=0;
+                        printf("\nEl archivo se ha abierto correctamente\n");
+                        while(fscanf(o,"%c",&x)!=EOF)
+                        {
+                            if(x=='\n')
+                            {
+                                contador++;
+                            }
+                            if (contador==5)
+                            {
+                                break;
+                            }
+                        }
+                        for (i=0; i<cantidadenergias; i++)
+                        {
+                            fscanf(o, "%[^,]s", nombreenergia[i].nombre);
+                            for (j=0; j<24; j++)
+                            {
+                                fscanf(o, ",%lf", &datos[j].energia3[i]);
+                            }
+                        }
+                        for (i = 0; i < cantidadenergias; i++)//apartir de aqui el 2022 empieza a fallar
+                        {
+                            for (j =12; j < 24; j++) //2 errores, el primero sé solucionarlo pero el segundo es una fumada: mañana en llamada te cuento.
+                            {
+                                suma2[i] += datos[j].energia3[i];
+                            }
+                        }
+                        ranking(suma2, cantidadenergias, nombreenergia);
+                        printf("\n\nRanking de emisiones de mayor a menor 2020:\n");
+                        for (i = 0; i < cantidadenergias; i++)
+                        {
+                            printf("%s:%.3fGWh", nombreenergia[i].nombre, suma2[i]);
+                        }
+                        fclose(o);
+                    }
+                break;
+                }
+                case 2:
+                {
+                    o=fopen("C:/Users/jiaha/Downloads/Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+                    if (o==NULL)
+                    {
+                        printf("Error al abrir el archivo");
+                        return -1;
+                    }
+                    else
+                    {
+                        printf("El archivo se ha abierto correctamente\n");
+                        data datos[24];
+                        int i=0;
+                        int j=0;
+                        int contador=0;
+                        char x;
+                        while(fscanf(o,"%c",&x)!=EOF)
+                        {
+                            if(x=='\n')
+                            {
+                                contador++;
+                            }
+                            if (contador==5)
+                            {
+                                break;
+                            }
+                        }
+                        for (i=0; i<16; i++)
+                        {
+                            fscanf(o, "%[^,]s", nombreenergia[i].nombre);
+                            for (j=0; j<24; j++)
+                            {
+                                fscanf(o, ",%lf", &datos[j].energia3[i]);
+                            }
+                            double sum3[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+                            double suma4[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+                            for (i = 0; i < 16; i++)
+                            {
+                                for (j = 0; j < 12; j++)
+                                {
+                                    suma2[i] += datos[j].energia3[i];
+                                }
+                            }
+                        }
+                        fclose(o);
+                        o=fopen("C:/Users/jiaha/Downloads/Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+                        if (o==NULL)
+                        {
+                            printf("Error al abrir el archivo");
+                            return -1;
+                        }
+                        else
+                        {
+                            contador=0;
+                            printf("\nEl archivo se ha abierto correctamente\n");
+                            while(fscanf(o,"%c",&x)!=EOF)
+                            {
+                                if(x=='\n')
+                                {
+                                    contador++;
+                                }
+                                if (contador==5)
+                                {
+                                    break;
+                                }
+                            }
+                            for (i=0; i<16; i++)
+                            {
+                                fscanf(o, "%[^,]s", nombreenergia[i].nombre);
+                                for (j=0; j<24; j++) // 24 datos en cada energia
+                                {
+                                    fscanf(o, ",%lf", &datos[j].energia3[i]);
+                                }
+                            }
+                            for (i = 0; i < cantidadenergias; i++)//apartir de aqui el 2022 empieza a fallar
+                            {
+                                for (j =12; j < 24; j++) //2 errores, el primero sé solucionarlo pero el segundo es una fumada: mañana en llamada te cuento.
+                                {
+                                    suma2[i] += datos[j].energia3[i];
+                                }
+                            }
+                        }
+                    }
+                }
+                calcularPorcentaje(datos,cantidadenergias,suma2,nombreenergia,260828.837);
+                calcularPorcentaje2(datos,cantidadenergias,suma2,nombreenergia,251398.750);
+                fclose(o);
+                break;
+            }
+        }
+    }
+        case 2:
+        {
+            nombre nombreenergia[18];
+            FILE *l;
+
+            dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
+            {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
+            l=fopen("C:/Users/Mar/Downloads/Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+            if (l==NULL)
+            {
+                printf("Error al abrir el archivo");
+                return -1;
+            }
+            else
+            {
+            printf("El archivo se ha abierto correctamente\n");
+            data datos[24];
+            int i=0;
+            int j=0;
+            int contador=0;
+            char x;
+            int cantidadenergias=17;
+            while(fscanf(l,"%c",&x)!=EOF)
+            {
+                if(x=='\n')
+                {
+                    contador++;
+                }
+                if (contador==5)
+                {
+                break;
+                }
+
+            }
+            for (i=0; i<cantidadenergias; i++)
+            {
+                fscanf(l, "%[^,]s", nombreenergia[i].nombre);
+                for (j=0; j<24; j++)
+                {
+                    fscanf(l, ",%lf", &datos[j].energia3[i]);
+                }
+            }
+            fclose(l);
+            int panel;
+            int cantidadenergia=17;
+            double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            printf("Opciones a realizar\n1-Clasificacion produccion de Energia\n2-Energia representado en porcentaje\n");
+            scanf("%i",&panel);
+            switch (panel)
+            {
+                case 1:
+                {
+                    for (i = 0; i < cantidadenergias; i++)
+                    {
+                        for (j = 0; j < 12; j++)
+                        {
+                            suma[i] += datos[j].energia3[i];
+                        }
+                    }
+                    ranking(suma, cantidadenergias, nombreenergia);
+                    printf("Ranking de emisiones de mayor a menor 2021:\n");
+                    for (i = 0; i < cantidadenergias; i++)
+                    {
+                        printf("%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
+                    }
+                    l=fopen("C:/Users/jiaha/Downloads/Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+                    if (l==NULL)
+                    {
+                        printf("Error al abrir el archivo");
+                        return -1;
+                    }
+                    else
+                    {
+                        contador=0;
+                        printf("\nEl archivo se ha abierto correctamente\n");
+                        while(fscanf(l,"%c",&x)!=EOF)
+                        {
+                            if(x=='\n')
+                            {
+                                contador++;
+                            }
+                            if (contador==5)
+                            {
+                                break;
+                            }
+                        }
+                        for (i=0; i<cantidadenergias; i++)
+                        {
+                            fscanf(l, "%[^,]s", nombreenergia[i].nombre);
+                            for (j=0; j<24; j++)
+                            {
+                                fscanf(l, ",%lf", &datos[j].energia3[i]);
+                            }
+                        }
+                        for (i = 0; i < cantidadenergias; i++)//apartir de aqui el 2022 empieza a fallar
+                        {
+                            for (j =12; j < 24; j++) //2 errores, el primero sé solucionarlo pero el segundo es una fumada: mañana en llamada te cuento.
+                            {
+                                suma2[i] += datos[j].energia3[i];
+                            }
+                        }
+                        ranking(suma2, cantidadenergias, nombreenergia);
+                        printf("\n\nRanking de emisiones de mayor a menor 2022:\n");
+                        for (i = 0; i < cantidadenergias; i++)
+                        {
+                            printf("%s:%.3fGWh", nombreenergia[i].nombre, suma2[i]);
+                        }
+                        fclose(l);
+                    }
+                break;
+                }
+                case 2:
+                {
+                    l=fopen("C:/Users/jiaha/Downloads/Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+                    if (l==NULL)
+                    {
+                        printf("Error al abrir el archivo");
+                        return -1;
+                    }
+                    else
+                    {
+                        printf("El archivo se ha abierto correctamente\n");
+                        data datos[24];
+                        int i=0;
+                        int j=0;
+                        int contador=0;
+                        char x;
+                        while(fscanf(l,"%c",&x)!=EOF)
+                        {
+                            if(x=='\n')
+                            {
+                                contador++;
+                            }
+                            if (contador==5)
+                            {
+                                break;
+                            }
+                        }
+                        for (i=0; i<16; i++)
+                        {
+                            fscanf(l, "%[^,]s", nombreenergia[i].nombre);
+                            for (j=0; j<24; j++)
+                            {
+                                fscanf(l, ",%lf", &datos[j].energia3[i]);
+                            }
+                            double sum3[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+                            double suma4[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+                            for (i = 0; i < 16; i++)
+                            {
+                                for (j = 0; j < 12; j++)
+                                {
+                                    suma2[i] += datos[j].energia3[i];
+                                }
+                            }
+                        }
+                        fclose(l);
+                        l=fopen("C:/Users/jiaha/Downloads/Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+                        if (l==NULL)
+                        {
+                            printf("Error al abrir el archivo");
+                            return -1;
+                        }
+                        else
+                        {
+                            contador=0;
+                            printf("\nEl archivo se ha abierto correctamente\n");
+                            while(fscanf(l,"%c",&x)!=EOF)
+                            {
+                                if(x=='\n')
+                                {
+                                    contador++;
+                                }
+                                if (contador==5)
+                                {
+                                    break;
+                                }
+                            }
+                            for (i=0; i<16; i++)
+                            {
+                                fscanf(l, "%[^,]s", nombreenergia[i].nombre);
+                                for (j=0; j<24; j++) // 24 datos en cada energia
+                                {
+                                    fscanf(l, ",%lf", &datos[j].energia3[i]);
+                                }
+                            }
+                            for (i = 0; i < cantidadenergias; i++)//apartir de aqui el 2022 empieza a fallar
+                            {
+                                for (j =12; j < 24; j++) //2 errores, el primero sé solucionarlo pero el segundo es una fumada: mañana en llamada te cuento.
+                                {
+                                    suma2[i] += datos[j].energia3[i];
+                                }
+                            }
+                        }
+                    }
+                }
+                calcularPorcentaje3(datos,cantidadenergias,suma2,nombreenergia,260011.185);
+                calcularPorcentaje4(datos,cantidadenergias,suma2,nombreenergia,276412.681);
+                fclose(l);
+                break;
+            }
+        }
+    }
+
+        }
+    }
 }
+	}
+		fclose(SALIDA);
+
+	}
+
 
 	void minimo(data datos[], int cantidadenergias, nombre nombreenergia[])
 	{
@@ -1037,4 +1463,79 @@ void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombr
     {
         printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
     }
+}
+void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
+{
+    double porcentajes[17];
+
+    int i,j;
+
+    for ( i = 0; i < 16 ;i++)
+    {
+        double porcentaje = (datos[12].energia3[i] + datos[13].energia3[i] + datos[14].energia3[i] + datos[15].energia3[i] + datos[16].energia3[i] +
+                            datos[17].energia3[i] + datos[18].energia3[i] + datos[19].energia3[i] + datos[20].energia3[i] + datos[21].energia3[i] +
+                            datos[22].energia3[i] + datos[23].energia3[i]) / total * 100.0;
+
+        porcentajes[i] = porcentaje;
+    }
+
+    printf("\n\tPorcentaje de cada energia en el total de 2021:\n");
+    for (i = 0; i < 15; i++)
+    {
+        printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
+    }
+}
+void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
+{
+    double porcentajes[17];
+
+    int i,j;
+
+    for ( i = 0; i < 16 ;i++)
+    {
+        double porcentaje = (datos[12].energia3[i] + datos[13].energia3[i] + datos[14].energia3[i] + datos[15].energia3[i] + datos[16].energia3[i] +
+                            datos[17].energia3[i] + datos[18].energia3[i] + datos[19].energia3[i] + datos[20].energia3[i] + datos[21].energia3[i] +
+                            datos[22].energia3[i] + datos[23].energia3[i]) / total * 100.0;
+
+        porcentajes[i] = porcentaje;
+    }
+
+    printf("\n\tPorcentaje de cada energia en el total de 2022:\n");
+    for (i = 0; i < 15; i++)
+    {
+        printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
+    }
+}
+void analizarVariacion(float precios[], int numAnos)
+{
+    float variacionTotal=0.0;
+
+    for (int i = 1; i < numAnos; i++) {
+        float variacion = ((precios[i]-precios[i-1]) / precios[i - 1]) * 100;
+        variacionTotal += variacion;
+
+        if (variacion < 0)
+        {
+            printf("El coste de MWh %d a %d: ha dismunuido %.2f%%\n", 2017 + i - 1, 2017 + i, -variacion);
+        } else {
+            printf("El coste de MWh %d a %d: ha aumentado %.2f%%\n", 2017 + i - 1, 2017 + i, variacion);
+        }
+    }
+
+    if (variacionTotal < 0)
+    {
+        printf("El coste de MWh total ha disminuido %.2f%%\n", -variacionTotal);
+    } else {
+        printf("El coste de MWh total ha aumentado %.2f%%\n", variacionTotal);
+    }
+}
+void calcularPromedio(float precios[], int numAnos)
+{
+    float sumaPrecios = 0.0;
+    for (int i=0;i<numAnos;i++)
+    {
+        sumaPrecios += precios[i];
+    }
+    float promedioPrecios = sumaPrecios / numAnos;
+    printf("El promedio de los precios es: %.2f euro/MWh\n", promedioPrecios);
 }
