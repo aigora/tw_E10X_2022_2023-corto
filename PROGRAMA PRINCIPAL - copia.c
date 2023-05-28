@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-
 typedef struct nombre
 {
 	char nombre[50];
@@ -36,29 +35,27 @@ void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombr
 int main()
 {
 	int eleccion;
-	
+
 	FILE *SALIDA;
 	SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","w");
 	if (SALIDA==NULL)
     {
+
         printf("Error al abrir el archivo");
         return -1;
     }
-
 	printf("Bienvenido al panel principal");
 	while (eleccion!=4)
 	{
 	printf("\n\nQue desesa hacer\n");
 	printf("1-Emisiones CO2\n");
 	printf("2-Estructura de la potencia instalada con y sin CO2\n");
-	printf("3-Generacion de todos tipos de energias");
-	printf("3-Generacion de energias renovables");
+	printf("3-Generacion de todos tipos de energias\n");
 	scanf("\t%i",&eleccion);
 	switch (eleccion)
 	{
 		case 1:
 			{
-				
 				int COVID;
 				printf("1-Emisiones periodo transicion COVID-19\n");
 				printf("2-Emisiones estabilidad COVID\n");
@@ -69,7 +66,7 @@ int main()
 						{
 						nombre nombreenergia[9];
 						FILE *g;
-						fprintf(SALIDA,"Emisiones periodo transicion COVID-19\n");
+						fprintf(SALIDA,"Emisiones de CO2 periodo transicion COVID-19\n");
 
 						dia alarma={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
 						{2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020}};
@@ -346,6 +343,8 @@ int main()
 					case 1:
 							{
 
+							    fprintf(SALIDA,"Clasificación de la produccion de CO2\n");
+
 								 for (i = 0; i < cantidadenergias; i++)
 							        {
 							            j=0;
@@ -354,9 +353,11 @@ int main()
 							        }
 							        rankingEstructuras(suma, cantidadenergias, nombreenergia);
 						            printf("Ranking de emisiones de mayor a menor 2019:\n");
+						            fprintf(SALIDA,"Ranking de emisiones de mayor a menor 2019:\n");
 
 						            for (i = 0; i < cantidadenergias; i++)
 						            {
+						                fprintf(SALIDA,"%s:%.3f", nombreenergia[i].nombre, suma[i]);
 						                printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);
 						            }
 
@@ -369,6 +370,7 @@ int main()
                                     else
                                     {
                                         contador=0;
+                                        fprintf(SALIDA,"El archivo se ha abierto correctamente\n");
                                         printf("El archivo se ha abierto correctamente\n");
                                         while(fscanf(Estructura,"%c",&x)!=EOF)
                                         {
@@ -403,8 +405,10 @@ int main()
 
 							        rankingEstructuras(suma2, cantidadenergias, nombreenergia);
 						            printf("\n\nRanking de emisiones de mayor a menor 2020:\n");
+						            fprintf(SALIDA,"\n\nRanking de emisiones de mayor a menor 2020:\n");
 						            for (i = 0; i < cantidadenergias; i++)
 						            {
+						                fprintf(SALIDA,"%s:%.3f", nombreenergia[i].nombre, suma2[i]);
 						                printf("%s:%.3f", nombreenergia[i].nombre, suma2[i]);
 						            }
 						            Estructura=fopen("C:/Users/Mar/Desktop/Antonio/Codeblocks/Trabajo/Estructura.csv","r");
@@ -449,9 +453,11 @@ int main()
 
 
 							        rankingEstructuras(suma3, cantidadenergias, nombreenergia);
+							        fprintf(SALIDA,"\n\nRanking de emisiones de mayor a menor 2021:\n");
 						            printf("\n\nRanking de emisiones de mayor a menor 2021:\n");
 						            for (i = 0; i < cantidadenergias; i++)
 						            {
+						                fprintf(SALIDA,"%s:%.3f", nombreenergia[i].nombre, suma3[i]);
 						                printf("%s:%.3f", nombreenergia[i].nombre, suma3[i]);
 						            }
 
@@ -498,9 +504,11 @@ int main()
 
 
 							        rankingEstructuras(suma4, cantidadenergias, nombreenergia);
+							        fprintf(SALIDA,"\n\nRanking de emisiones de mayor a menor 2022:\n");
 						            printf("\n\nRanking de emisiones de mayor a menor 2022:\n");
 						            for (i = 0; i < cantidadenergias; i++)
 						            {
+						                fprintf(SALIDA,"%s:%.3f", nombreenergia[i].nombre, suma4[i]);
 						                printf("%s:%.3f", nombreenergia[i].nombre, suma4[i]);
 						            }
                                 }
@@ -513,136 +521,37 @@ int main()
 							diferenciasEstructuras(datos,cantidadenergias,nombreenergia);
 					break;
 						}
+
                     default:
                     {
                         printf("Opción no valida, volviendo al menu principal");
                     }
-				 }
+					}
 	fclose(Estructura);
 	return 0;
 	}
 }
-                                                }
+}
+                    case 3:
+                        {
+                            int cual;
+                            printf("\t3 .1-Generacion 2019-2020");
+                            printf("\t3 .1-Generacion 2019-2020");//Qué se supone que hace esto?
+                        }
 	}
-		/*case 2:
-			{
-				break;
-			}	*/
-		case 3:
-			{
-				printf("Ha elegido ver la energía renovable producida cada año.\n");     
-        
-    int i,j;
-    nombre nombreenergia[17];
-    data datos[24];
-    int cantidadEnergias = 17;
-	FILE *pf;
-    dia fecha= {{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
-    {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,
-    2022,2022,2022,2022,2022,2022,2022,2022}};
-	pf=fopen("generacion_por_tecnologias_21_22_puntos_simplificado.csv", "r");
-
-    if (pf == NULL)
-    {
-        printf("Error al abrir el fichero.\n");
-        return -1;
-    }
-
-    else
-    {
-        printf("Fichero abierto correctamente.\n");
-        
-        data datos[24];
-        int cantidadEnergias=17; 
-        int i=0;
-        int j=0;
-        char x;
-        int contador=0;
-        
-        while(fscanf(pf, "%c" , &x) != EOF)
-        {
-            if(x == '\n')
-            {
-                contador++;
-            }
-            if(contador==5)
-            {
-                break;
-            }
-        } 
-        
-        for (i=0; i<cantidadEnergias; i++)  
-        {
-            fscanf(pf, "%[^,]s", nombreenergia[i].nombre);
-             
-            //GUARGAMOS LOS DATOS DE CADA ENERGIA 24 EN TOTAL(12 POR CADA AÑO).
-            for (j=0; j<24; j++)
-            {
-                fscanf(pf, ",%lf", &datos[j].energia3[i]);
-                 
-		    }
-    
-        }
-	}
-								
-								
-	fclose(pf);
-	
-				int panel;
-				int cantidadenergia=17;
-				double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-				double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
-				printf("Opciones a realizar\n1-Energia renovable generada en 2021.\t2-Energia renovable generada en 2022.\t3-Energía renovable generada en un mes a elegir.\n");
-						scanf("%i",&panel);
-						switch (panel)
-									{
-										case 1:	
-												 for (i = 0; i < cantidadEnergias; i++)
-													        {
-													            for (j = 0; j < 12; j++)
-													            {
-													                suma[i] += datos[j].energia3[i];
-													            }
-													        }
-															double sum;
-													        sum = suma[0]+suma[8]+suma[9]+suma[10]+suma[11]+suma[12]+suma[15];
-												            printf("Energía renovable generada en el 2021: %.2f GWh.\n", sum);
-												        break;
-						
-                                        case 2:						
-												        
-												for (i = 0; i < cantidadEnergias; i++)
-													        {
-													            for (j =12; j < 24; j++) 
-													            {
-													                suma2[i] += datos[j].energia3[i];
-													            }
-													        }
-															double sum2;
-													        sum2=suma2[0]+suma2[8]+suma2[9]+suma2[10]+suma2[11]+suma2[12]+suma2[15];
-												            printf("Energía renovable generada en el 2022: %.2f GWh.\n", sum2);												     		
-                                                              break;
-                                        case 3:
-												
-												printf("¿Que mes desea consultar?\n2021:\t           2022:\n1-Enero\t           13-Enero\n2-Febrero\t   14-Febrero\n3-Marzo\t           15-Marzo\n4-Abril\t           16-Abril\n5-Mayo\t           17-Mayo\n6-Junio\t           18-Junio\n7-Julio\t           19-Julio\n8-Agosto\t   20-Agosto\n9-Septiembre\t   21-Septiembre\n10-Octubre\t   22-Octubre\n11-Noviembre\t   23-Noviembre\n12-Diciembre\t   24-Diciembre\n");
-												int m;
-												scanf("%d", &m);
-												for (i = 0; i < cantidadEnergias; i++)
-													        {
-													                suma[i] += datos[m-1].energia3[i];
-													            
-													        }
-															double sum3;
-													        sum3 = suma[0]+suma[8]+suma[9]+suma[10]+suma[11]+suma[12]+suma[15];
-												            printf("Energía renovable generada en el mes elegido: %.2f GWh.\n", sum3);
-												        break;
-			}
 	}
 	}
 	fclose(SALIDA);
-}}
+}
 	void minimo(data datos[], int cantidadenergias, nombre nombreenergia[])
 	{
+	    FILE *SALIDA;
+	    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+	    if (SALIDA==NULL)
+        {
+            printf("Error al abrir el archivo");
+            return -1;
+        }
 	    int i, j, min;
 	    for (i=0; i<cantidadenergias; i++) {
 	        printf("\n%s\n", nombreenergia[i].nombre);
@@ -659,6 +568,9 @@ int main()
 	        printf("\t\tMes con menor emisión: %s\n", obtmesano(min + 1));
 	        printf("\t\tEmision del mes: %.3f\n", min_emision);
 
+	        fprintf(SALIDA,"\t\tMes con menor emisión: %s\n", obtmesano(min + 1));
+	        fprintf(SALIDA,"\t\tEmision del mes: %.3f\n", min_emision);
+
 	        double max_emision = datos[0].emision[i];
 	        int max = 0;
 
@@ -669,12 +581,19 @@ int main()
 	            }
 	        }
 
+	        fprintf(SALIDA,"\t\tMes con mayor emisión: %s\n", obtmesano(max + 1));
+	        fprintf(SALIDA,"\t\tEmision del mes: %.3f\n", max_emision);
+
 	        printf("\t\tMes con mayor emisión: %s\n", obtmesano(max + 1));
 	        printf("\t\tEmision del mes: %.3f\n", max_emision);
 
 	        double diferencia = max_emision - min_emision;
 	        printf("\t\tDiferencia: %.3f\n", diferencia);
+
+	        fprintf(SALIDA,"\t\tDiferencia: %.3f\n", diferencia);
+
 	    }
+	    fclose(SALIDA);
 	}
 	const char* obtmesano(int mes)
 	{
@@ -710,8 +629,12 @@ int main()
 	void promedioYporcentaje(data datos[], int cantidadenergias)
 	{
 	    FILE *SALIDA;
-        SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","w");
-
+        SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+        if (SALIDA==NULL)
+        {
+            printf("Error al abrir el archivo");
+            return -1;
+        }
 		int i,j;
 	    double promedioAntes = 0.0;
 	    double promedioDespues = 0.0;
@@ -756,10 +679,14 @@ int main()
 }
 void mesmax(data datos[],int cantidadenergias,nombre nombreenergia[])
 {
+    FILE *SALIDA;
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+
     int i, j;
     double maxEmision;
     int maxMes;
     printf("\t\t\tEN 2021\n");
+    fprintf(SALIDA,"\t\t\tEN 2021\n");
     for (i=0;i<cantidadenergias;i++)
 	{
         maxEmision=datos[0].energia2[i];
@@ -773,12 +700,15 @@ void mesmax(data datos[],int cantidadenergias,nombre nombreenergia[])
                 maxMes = j;
             }
         }
-
+        fprintf(SALIDA,"%s\n", nombreenergia[i].nombre);
         printf("%s\n", nombreenergia[i].nombre);
+        fprintf(SALIDA,"\t\tMes con mayor emision: %s\n", obtmes(maxMes+1));
         printf("\t\tMes con mayor emision: %s\n", obtmes(maxMes+1));
+        fprintf(SALIDA,"\t\tEmision: %.3f\n", maxEmision);
         printf("\t\tEmision: %.3f\n", maxEmision);
     }
     printf("\n\t\t\tEN 2022\n");
+    fprintf(SALIDA,"\n\t\t\tEN 2022\n");
     for (i=0;i<cantidadenergias;i++)
 	{
         maxEmision=datos[12].energia2[i];
@@ -793,9 +723,13 @@ void mesmax(data datos[],int cantidadenergias,nombre nombreenergia[])
             }
         }
         printf("%s\n", nombreenergia[i].nombre);
+        fprintf(SALIDA,"%s\n", nombreenergia[i].nombre);
         printf("\t\tMes con mayor emision: %s\n", obtmes(maxMes-11));
+        fprintf(SALIDA,"\t\tMes con mayor emision: %s\n", obtmes(maxMes-11));
         printf("\t\tEmision: %.3f\n", maxEmision);
+        fprintf(SALIDA,"\t\tEmision: %.3f\n", maxEmision);
     }
+    fclose(SALIDA);
 }
 const char* obtmes(int mes)
 {
@@ -819,7 +753,7 @@ const char* obtmes(int mes)
 void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[])
 {
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","w");
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
 	int i,j;
 	double diferencia;
 	fprintf(SALIDA,"\tLa produccion de CO2 de:\n");
@@ -912,22 +846,14 @@ void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenerg
 {
     FILE *SALIDA;
     char texto;
-    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","r");
-    if(SALIDA==NULL)
-    {
-        printf("Error al abrir el archivo");
-        return -1;
-    }
-    fgets(texto, sizeof(texto),SALIDA);
-    fclose(SALIDA);
-    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","w");
+
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
         return -1;
     }
-    fscanf(SALIDA,"%[^\n]s", texto);
-    fprintf(SALIDA,"%s", texto);
+
 	int i,j;
 	double diferencia;
 	printf("La produccion de CO2 de:\n");
@@ -1002,7 +928,9 @@ void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenerg
 			printf("%s ha aumentado %.3f",nombreenergia[i].nombre,diferencia);
 		}
 	}
+	fclose(SALIDA);
 }
+
 /// AQUI ENERGIAS
 void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
@@ -1017,7 +945,7 @@ void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre
         porcentajes[i] = porcentaje;
     }
 
-    printf("\n\tPorcentaje de cada energía en el total de 2019:\n");
+    printf("\n\tPorcentaje de cada energia en el total de 2019:\n");
     for ( i = 0; i < 15; i++)
     {
         printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
@@ -1038,7 +966,7 @@ void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombr
         porcentajes[i] = porcentaje;
     }
 
-    printf("\n\tPorcentaje de cada energía en el total de 2020:\n");
+    printf("\n\tPorcentaje de cada energia en el total de 2020:\n");
     for (i = 0; i < 15; i++)
     {
         printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
