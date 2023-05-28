@@ -50,7 +50,8 @@ int main()
 	printf("\n\nQue desesa hacer\n");
 	printf("1-Emisiones CO2\n");
 	printf("2-Estructura de la potencia instalada con y sin CO2\n");
-	printf("3-Generacion de todos tipos de energias\n");
+//	printf("3-Generacion de todos tipos de energias\n");
+	printf("3-Generacion de energias renovables\n");
 	scanf("\t%i",&eleccion);
 	switch (eleccion)
 	{
@@ -534,10 +535,121 @@ int main()
 }
                     case 3:
                         {
-                            int cual;
-                            printf("\t3 .1-Generacion 2019-2020");
-                            printf("\t3 .1-Generacion 2019-2020");//Qué se supone que hace esto?
+                            //int cual;
+                            //printf("\t3 .1-Generacion 2019-2020");
+                            //printf("\t3 .1-Generacion 2019-2020");//Qué se supone que hace esto?
+                            printf("Ha elegido ver la energia renovable producida cada año.\n");
+                            fprintf(SALIDA,"Ha elegido ver la energia renovable producida cada año.\n");
+
+    int i,j;
+    nombre nombreenergia[17];
+    data datos[24];
+    int cantidadEnergias = 17;
+	FILE *pf;
+    dia fecha= {{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
+    {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,
+    2022,2022,2022,2022,2022,2022,2022,2022}};
+	pf=fopen("generacion_por_tecnologias_21_22_puntos_simplificado.csv", "r");
+
+    if (pf == NULL)
+    {
+        printf("Error al abrir el fichero.\n");
+        return -1;
+    }
+
+    else
+    {
+        printf("Fichero abierto correctamente.\n");
+
+        data datos[24];
+        int cantidadEnergias=17;
+        int i=0;
+        int j=0;
+        char x;
+        int contador=0;
+
+        while(fscanf(pf, "%c" , &x) != EOF)
+        {
+            if(x == '\n')
+            {
+                contador++;
+            }
+            if(contador==5)
+            {
+                break;
+            }
+        }
+
+        for (i=0; i<cantidadEnergias; i++)
+        {
+            fscanf(pf, "%[^,]s", nombreenergia[i].nombre);
+
+            //GUARGAMOS LOS DATOS DE CADA ENERGIA 24 EN TOTAL(12 POR CADA AñO).
+            for (j=0; j<24; j++)
+            {
+                fscanf(pf, ",%lf", &datos[j].energia3[i]);
+
+		    }
+
+        }
+	}
+
+
+	fclose(pf);
+
+				int panel;
+				int cantidadenergia=17;
+				double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+				double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+				printf("Opciones a realizar\n1-Energia renovable generada en 2021.\t2-Energia renovable generada en 2022.\t3-Energia renovable generada en un mes a elegir.\n");
+						scanf("%i",&panel);
+						switch (panel)
+									{
+										case 1:
+												 for (i = 0; i < cantidadEnergias; i++)
+													        {
+													            for (j = 0; j < 12; j++)
+													            {
+													                suma[i] += datos[j].energia3[i];
+													            }
+													        }
+															double sum;
+													        sum = suma[0]+suma[8]+suma[9]+suma[10]+suma[11]+suma[12]+suma[15];
+												            printf("Energia renovable generada en el 2021: %.2f GWh.\n", sum);
+												            fprintf(SALIDA,"Energia renovable generada en el 2021: %.2f GWh.\n", sum);
+												        break;
+
+                                        case 2:
+
+												for (i = 0; i < cantidadEnergias; i++)
+													        {
+													            for (j =12; j < 24; j++)
+													            {
+													                suma2[i] += datos[j].energia3[i];
+													            }
+													        }
+															double sum2;
+													        sum2=suma2[0]+suma2[8]+suma2[9]+suma2[10]+suma2[11]+suma2[12]+suma2[15];
+												            printf("Energia renovable generada en el 2022: %.2f GWh.\n", sum2);
+												            fprintf(SALIDA,"Energia renovable generada en el 2022: %.2f GWh.\n", sum2);
+                                                              break;
+                                        case 3:
+
+												printf("Que mes desea consultar?\n2021:\t           2022:\n1-Enero\t           13-Enero\n2-Febrero\t   14-Febrero\n3-Marzo\t           15-Marzo\n4-Abril\t           16-Abril\n5-Mayo\t           17-Mayo\n6-Junio\t           18-Junio\n7-Julio\t           19-Julio\n8-Agosto\t   20-Agosto\n9-Septiembre\t   21-Septiembre\n10-Octubre\t   22-Octubre\n11-Noviembre\t   23-Noviembre\n12-Diciembre\t   24-Diciembre\n");
+												int m;
+												scanf("%d", &m);
+												for (i = 0; i < cantidadEnergias; i++)
+													        {
+													                suma[i] += datos[m-1].energia3[i];
+
+													        }
+															double sum3;
+													        sum3 = suma[0]+suma[8]+suma[9]+suma[10]+suma[11]+suma[12]+suma[15];
+												            printf("Energia renovable generada en el mes elegido: %.2f GWh.\n", sum3);
+												            fprintf(SALIDA,"Energia renovable generada en el mes elegido: %.2f GWh.\n", sum3);
+												        break;
                         }
+	}
 	}
 	}
 	}
