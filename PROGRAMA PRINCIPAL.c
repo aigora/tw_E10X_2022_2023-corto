@@ -1,24 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-/*typedef struct
-{
-    int mes[24];
-    int year[24];
-} dia;
 
-//SIRVE PARA GUARDAR LOS DATOS NUMÉRICOS DE LAS ENERGÍAS
-typedef struct
-{
-    double energia[17];
-} data;
-
-//ESTRUCTURA QUE ALMACENA LOS DATOS GUARDADOS
-typedef struct resultadosguardados
-{
-    nombreEnergia energia;
-    dia fecha;
-    double resultados;
-} resultadosguardados;*/
 typedef struct nombre
 {
 	char nombre[50];
