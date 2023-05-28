@@ -27,14 +27,17 @@ void ranking(double suma[], int n, nombre nombreenergia[]);
 void mesmax(data datos[], int cantidadenergias, nombre nombreenergia[]);
 void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[]);
 const char* obtmes(int mes);
+void rankingEstructuras(double suma[], int n, nombre nombreenergia[]);
+void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenergia[]);
 int main()
 {
 	int eleccion;
 	printf("Bienvenido al panel principal\n");
 	while (eleccion!=4)
 	{
-	printf("Que desesa hacer\n");
+	printf("\n\nQue desesa hacer\n");
 	printf("1-Emisiones CO2\n");
+	printf("2-Estructura de la potencia instalada con y sin CO2\n");
 	scanf("\t%i",&eleccion);
 	switch (eleccion)
 	{
@@ -50,7 +53,7 @@ int main()
 						{
 						nombre nombreenergia[9];
 						FILE *g;
-					
+
 						dia alarma={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
 						{2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020}};
 						g=fopen("C:/Users/jiaha/Downloads/Estado_Alarma2.csv","r");
@@ -79,7 +82,7 @@ int main()
 								break;
 								}
 							}
-							
+
 							for (i=0; i<cantidadenergias; i++)
 					        {
 					            fscanf(g, "%[^,]s", nombreenergia[i].nombre);
@@ -112,8 +115,12 @@ int main()
 											{
 												promedioYporcentaje(datos,cantidadenergias);
 												break;
-											}	
-							       
+											}
+											default:
+                                            {
+                                                printf("Opción no valida, volviendo al menu principal");
+                                            }
+
 							        fclose(g);
 							    	}
 						}
@@ -122,7 +129,7 @@ int main()
 						{
 							nombre nombreenergia[9];
 							FILE *pf;
-						
+
 							dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
 							{2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
 							pf=fopen("C:/Users/jiaha/OneDrive/Escritorio/TRABAJO INFO/asd2.csv","r");
@@ -150,19 +157,18 @@ int main()
 									{
 									break;
 									}
-						
+
 								}
 								for (i=0; i<cantidadenergias; i++)
 						        {
-						            //Creo que sé por qué el carbón se guarda mal. Mañana en llamada te explico. Creo que tengo la solución pero se tarda un poquillo.
 						            fscanf(pf, "%[^,]s", nombreenergia[i].nombre);
-						            for (j=0; j<24; j++) // 24 datos en cada energia
+						            for (j=0; j<24; j++)
 						            {
 						                fscanf(pf, ",%lf", &datos[j].energia2[i]);
 								    }
 						        }
 						        fclose(pf);
-						
+
 						        			int panel;
 											int cantidadenergia=9;
 											double suma[9] = {0,0,0,0,0,0,0,0,0};
@@ -173,7 +179,7 @@ int main()
 											{
 											case 1:
 													{
-						
+
 														 for (i = 0; i < cantidadenergias; i++)
 													        {
 													            for (j = 0; j < 12; j++)
@@ -183,13 +189,12 @@ int main()
 													        }
 													        ranking(suma, cantidadenergias, nombreenergia);
 												            printf("Ranking de emisiones de mayor a menor 2021:\n");
-						
+
 												            for (i = 0; i < cantidadenergias; i++)
 												            {
-												                printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);    // aqui el carbon me sale pegado a lo otro
-						                                                                                                // He puesto un comentario donde creo que está el "error"
+												                printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);
 												            }
-						
+
 												            pf=fopen("C:/Users/jiaha/OneDrive/Escritorio/TRABAJO INFO/asd2.csv","r");
 						                                    if (pf==NULL)
 						                                    {
@@ -210,28 +215,28 @@ int main()
 						                                            {
 						                                                break;
 						                                            }
-						
+
 						                                        }
 						                                        for (i=0; i<cantidadenergias; i++)
 						                                        {
-						            
+
 						                                            fscanf(pf, "%[^,]s", nombreenergia[i].nombre);
-						                                                for (j=0; j<24; j++) // 24 datos en cada energia
+						                                                for (j=0; j<24; j++)
 						                                                {
 						                                                    fscanf(pf, ",%lf", &datos[j].energia2[i]);
 						                                                }
 						                                        }
-						
-						
-												        for (i = 0; i < cantidadenergias; i++)//apartir de aqui el 2022 empieza a fallar
+
+
+												        for (i = 0; i < cantidadenergias; i++)
 													        {
-													            for (j =12; j < 24; j++) //2 errores, el primero sé solucionarlo pero el segundo es una fumada: mañana en llamada te cuento.
+													            for (j =12; j < 24; j++)
 													            {
 													                suma2[i] += datos[j].energia2[i];
 													            }
 													        }
-						
-						
+
+
 													        ranking(suma2, cantidadenergias, nombreenergia);
 												            printf("\n\nRanking de emisiones de mayor a menor 2022:\n");
 												            for (i = 0; i < cantidadenergias; i++)
@@ -242,21 +247,261 @@ int main()
 												}
 											case 2:
 												{
-													mesmax(datos, cantidadenergias, nombreenergia); //falta 2022
+													mesmax(datos, cantidadenergias, nombreenergia);
+
 						        			break;
 												}
 											case 3:
 												{
-													diferencias(datos,cantidadenergias,nombreenergia); 
+													diferencias(datos,cantidadenergias,nombreenergia);
 											break;
 												}
 											}
+											default:
+                                            {
+                                                printf("Opción no valida, volviendo al menu principal");
+                                            }
 											fclose(pf);
 											}
 											}
 											}
-						
+    default:
+        {
+            printf("Opción no valida, volviendo al menu principal");
+        }
+
+
 	}//switch de covid
+                                            case 2:
+                                                {
+                                                    nombre nombreenergia[19];
+	FILE *Estructura;
+	Estructura=fopen("C:/Users/Mar/Desktop/Antonio/Codeblocks/Trabajo/Estructura.csv","r");
+	if (Estructura==NULL)
+	{
+		printf("Error al abrir el archivo");
+		return -1;
+	}
+	else
+	{
+		printf("El archivo se ha abierto correctamente\n");
+		data datos[24];
+		int i=0;
+		int j=0;
+		int contador=0;
+		char x;
+		int cantidadenergias=19;
+		while(fscanf(Estructura,"%c",&x)!=EOF)
+		{
+			if(x=='\n')
+			{
+				contador++;
+			}
+			if (contador==5)
+			{
+			break;
+			}
+
+		}
+		for (i=0; i<cantidadenergias; i++)
+        {
+            fscanf(Estructura, "%[^,]s", nombreenergia[i].nombre);
+            for (j=0; j<4; j++)
+            {
+                fscanf(Estructura, ",%lf", &datos[j].energia2[i]);
+		    }
+        }
+        fclose(Estructura);
+
+        			int panel;
+					double suma[19] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+					double suma2[19] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+					double suma3[19] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+					double suma4[19] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+					printf("Opciones a realizar\n1-Clasificacion produccion de CO2\n2-Progreso respecto CO2\n");
+					scanf("%i",&panel);
+					switch (panel)
+					{
+					case 1:
+							{
+
+								 for (i = 0; i < cantidadenergias; i++)
+							        {
+							            j=0;
+                                        suma[i] += datos[j].energia2[i];
+
+							        }
+							        rankingEstructuras(suma, cantidadenergias, nombreenergia);
+						            printf("Ranking de emisiones de mayor a menor 2019:\n");
+
+						            for (i = 0; i < cantidadenergias; i++)
+						            {
+						                printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);
+						            }
+
+						            Estructura=fopen("C:/Users/Mar/Desktop/Antonio/Codeblocks/Trabajo/Estructura.csv","r");
+                                    if (Estructura==NULL)
+                                    {
+                                        printf("Error al abrir el archivo");
+                                        return -1;
+                                    }
+                                    else
+                                    {
+                                        contador=0;
+                                        printf("El archivo se ha abierto correctamente\n");
+                                        while(fscanf(Estructura,"%c",&x)!=EOF)
+                                        {
+                                            if(x=='\n')
+                                            {
+                                                contador++;
+                                            }
+                                            if (contador==5)
+                                            {
+                                                break;
+                                            }
+
+                                        }
+                                        for (i=0; i<cantidadenergias; i++)
+                                        {
+                                            fscanf(Estructura, "%[^,]s", nombreenergia[i].nombre);
+                                                for (j=0; j<4; j++)
+                                                {
+                                                    fscanf(Estructura, ",%lf", &datos[j].energia2[i]);
+                                                }
+                                        }
+                                        fclose(Estructura);
+
+
+						        for (i = 0; i < cantidadenergias; i++)
+							        {
+							            j=1;
+                                        suma2[i] += datos[j].energia2[i];
+
+							        }
+
+
+							        rankingEstructuras(suma2, cantidadenergias, nombreenergia);
+						            printf("\n\nRanking de emisiones de mayor a menor 2020:\n");
+						            for (i = 0; i < cantidadenergias; i++)
+						            {
+						                printf("%s:%.3f", nombreenergia[i].nombre, suma2[i]);
+						            }
+						            Estructura=fopen("C:/Users/Mar/Desktop/Antonio/Codeblocks/Trabajo/Estructura.csv","r");
+                                    if (Estructura==NULL)
+                                    {
+                                        printf("Error al abrir el archivo");
+                                        return -1;
+                                    }
+                                    else
+                                    {
+                                        contador=0;
+                                        printf("El archivo se ha abierto correctamente\n");
+                                        while(fscanf(Estructura,"%c",&x)!=EOF)
+                                        {
+                                            if(x=='\n')
+                                            {
+                                                contador++;
+                                            }
+                                            if (contador==5)
+                                            {
+                                                break;
+                                            }
+
+                                        }
+                                        for (i=0; i<cantidadenergias; i++)
+                                        {
+                                            fscanf(Estructura, "%[^,]s", nombreenergia[i].nombre);
+                                                for (j=0; j<4; j++)
+                                                {
+                                                    fscanf(Estructura, ",%lf", &datos[j].energia2[i]);
+                                                }
+                                        }
+                                        fclose(Estructura);
+
+
+						        for (i = 0; i < cantidadenergias; i++)
+							        {
+							            j=2;
+                                        suma3[i] += datos[j].energia2[i];
+
+							        }
+
+
+							        rankingEstructuras(suma3, cantidadenergias, nombreenergia);
+						            printf("\n\nRanking de emisiones de mayor a menor 2021:\n");
+						            for (i = 0; i < cantidadenergias; i++)
+						            {
+						                printf("%s:%.3f", nombreenergia[i].nombre, suma3[i]);
+						            }
+
+
+						            Estructura=fopen("C:/Users/Mar/Desktop/Antonio/Codeblocks/Trabajo/Estructura.csv","r");
+                                    if (Estructura==NULL)
+                                    {
+                                        printf("Error al abrir el archivo");
+                                        return -1;
+                                    }
+                                    else
+                                    {
+                                        contador=0;
+                                        printf("El archivo se ha abierto correctamente\n");
+                                        while(fscanf(Estructura,"%c",&x)!=EOF)
+                                        {
+                                            if(x=='\n')
+                                            {
+                                                contador++;
+                                            }
+                                            if (contador==5)
+                                            {
+                                                break;
+                                            }
+
+                                        }
+                                        for (i=0; i<cantidadenergias; i++)
+                                        {
+                                            fscanf(Estructura, "%[^,]s", nombreenergia[i].nombre);
+                                                for (j=0; j<4; j++)
+                                                {
+                                                    fscanf(Estructura, ",%lf", &datos[j].energia2[i]);
+                                                }
+                                        }
+                                        fclose(Estructura);
+
+
+						        for (i = 0; i < cantidadenergias; i++)
+							        {
+							            j=3;
+                                        suma4[i] += datos[j].energia2[i];
+
+							        }
+
+
+							        rankingEstructuras(suma4, cantidadenergias, nombreenergia);
+						            printf("\n\nRanking de emisiones de mayor a menor 2022:\n");
+						            for (i = 0; i < cantidadenergias; i++)
+						            {
+						                printf("%s:%.3f", nombreenergia[i].nombre, suma4[i]);
+						            }
+                                }
+                                    }
+					break;
+						}
+
+					case 2:
+						{
+							diferenciasEstructuras(datos,cantidadenergias,nombreenergia);
+					break;
+						}
+                    default:
+                    {
+                        printf("Opción no valida, volviendo al menu principal");
+                    }
+					}
+	fclose(Estructura);
+	return 0;
+	}
+}
+                                                }
 	}
 	}
 	}
@@ -268,30 +513,30 @@ int main()
 	        printf("\n%s\n", nombreenergia[i].nombre);
 	        double min_emision = datos[0].emision[i];
 	        min = 0;
-	        
+
 	        for (j=1;j<24;j++) {
 	            if (datos[j].emision[i] < min_emision) {
 	                min_emision = datos[j].emision[i];
 	                min = j;
 	            }
 	        }
-	        
+
 	        printf("\t\tMes con menor emisión: %s\n", obtmesano(min + 1));
 	        printf("\t\tEmision del mes: %.3f\n", min_emision);
-	        
+
 	        double max_emision = datos[0].emision[i];
 	        int max = 0;
-	        
+
 	        for (j=1;j<24;j++) {
 	            if (datos[j].emision[i] > max_emision) {
 	                max_emision = datos[j].emision[i];
 	                max = j;
 	            }
 	        }
-	        
+
 	        printf("\t\tMes con mayor emisión: %s\n", obtmesano(max + 1));
 	        printf("\t\tEmision del mes: %.3f\n", max_emision);
-	        
+
 	        double diferencia = max_emision - min_emision;
 	        printf("\t\tDiferencia: %.3f\n", diferencia);
 	    }
@@ -327,26 +572,26 @@ int main()
 	        default: return "Mes inválido";
 	    }
 	}
-	void promedioYporcentaje(data datos[], int cantidadenergias) 
+	void promedioYporcentaje(data datos[], int cantidadenergias)
 	{
 		int i,j;
 	    double promedioAntes = 0.0;
 	    double promedioDespues = 0.0;
 	    int contadorAntes = 0;
 	    int contadorDespues = 0;
-	
-	    for (i = 0; i < 12; i++) 
+
+	    for (i = 0; i < 12; i++)
 		{
-	        for ( j = 0; j < cantidadenergias; j++) 
+	        for ( j = 0; j < cantidadenergias; j++)
 			{
 	            promedioAntes += datos[i].emision[j];
 	        }
 	        contadorAntes++;
 	    }
-	
-	    for (i = 12; i < 24; i++) 
+
+	    for (i = 12; i < 24; i++)
 		{
-	        for ( j = 0; j < cantidadenergias; j++) 
+	        for ( j = 0; j < cantidadenergias; j++)
 			{
 	            promedioDespues += datos[i].emision[j];
 	        }
@@ -480,4 +725,92 @@ void ranking(double suma[], int n, nombre nombreenergia[])
             }
         }
     }
+}
+
+void rankingEstructuras(double suma[], int n, nombre nombreenergia[])
+{
+    int i, j;
+    double temp;
+    nombre tempNombre;
+
+    for (i=0;i<n-1;i++)
+    {
+        for (j=0;j<n-i-1;j++)
+        {
+            if (suma[j]<suma[j+1])
+            {
+                temp=suma[j];
+                suma[j]=suma[j+1];
+                suma[j+1]=temp;
+
+                tempNombre=nombreenergia[j];
+                nombreenergia[j]=nombreenergia[j+1];
+                nombreenergia[j+1]=tempNombre;
+            }
+        }
+    }
+}
+
+void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenergia[])
+{
+	int i,j;
+	double diferencia;
+	printf("La produccion de CO2 de:\n");
+	printf("2020 con respecto a 2019\n\n");
+	for(i=0;i<cantidadenergias;i++)
+	{
+		if (datos[0].energia2[i]>datos[1].energia2[i])
+		{
+			diferencia=datos[0].energia2[i]-datos[1].energia2[i];
+			printf("%s ha disminuido %.3f",nombreenergia[i].nombre,diferencia);
+		}
+		else
+		{
+			diferencia=datos[1].energia2[i]-datos[0].energia2[i];
+			printf("%s ha aumentado %.3f",nombreenergia[i].nombre,diferencia);
+		}
+	}
+	printf("\n\n2021 con respecto a 2020\n\n");
+	for(i=0;i<cantidadenergias;i++)
+	{
+		if (datos[1].energia2[i]>datos[2].energia2[i])
+		{
+			diferencia=datos[1].energia2[i]-datos[2].energia2[i];
+			printf("%s ha disminuido %.3f",nombreenergia[i].nombre,diferencia);
+		}
+		else
+		{
+			diferencia=datos[2].energia2[i]-datos[1].energia2[i];
+			printf("%s ha aumentado %.3f",nombreenergia[i].nombre,diferencia);
+		}
+	}
+	printf("\n\n2022 con respecto a 2021\n\n");
+	for(i=0;i<cantidadenergias;i++)
+	{
+		if (datos[2].energia2[i]>datos[3].energia2[i])
+		{
+			diferencia=datos[2].energia2[i]-datos[3].energia2[i];
+			printf("%s ha disminuido %.3f",nombreenergia[i].nombre,diferencia);
+		}
+		else
+		{
+			diferencia=datos[3].energia2[i]-datos[2].energia2[i];
+			printf("%s ha aumentado %.3f",nombreenergia[i].nombre,diferencia);
+		}
+	}
+
+	printf("\n\n2022 con respecto a 2019\n\n");
+	for(i=0;i<cantidadenergias;i++)
+	{
+		if (datos[0].energia2[i]>datos[3].energia2[i])
+		{
+			diferencia=datos[0].energia2[i]-datos[3].energia2[i];
+			printf("%s ha disminuido %.3f",nombreenergia[i].nombre,diferencia);
+		}
+		else
+		{
+			diferencia=datos[3].energia2[i]-datos[0].energia2[i];
+			printf("%s ha aumentado %.3f",nombreenergia[i].nombre,diferencia);
+		}
+	}
 }

@@ -9,12 +9,12 @@ int main()
     int primeravez=0;
     FILE *pescritura;
     FILE *plectura;
-    plectura = fopen("C:/Users/Mar/Downloads/Evolucion_Potencia.csv", "r");
+    plectura = fopen("C:/Users/Mar/Downloads/Estructura_Generacion_Tecnologias_2021-2022_1.csv", "r");
     if (plectura == NULL)
     {
         printf("Error al abrir el fichero de lectura.\n");
         }
-    pescritura = fopen("C:/Users/Mar/Downloads/Evolucion_Potencia2.csv", "w");
+    pescritura = fopen("C:/Users/Mar/Downloads/Estructura_Generacion_Tecnologias_2021-2022.csv", "w");
     if (pescritura == NULL)
     {
         printf("Error al abrir el fichero de escritura.\n");
