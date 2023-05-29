@@ -621,6 +621,7 @@ case 4:
     {
         case 1:
         {
+            //fprintf(SALIDA,"Produccion de energias 2019/2020\n");
             nombre nombreenergia[18];
             FILE *o;
 
@@ -680,9 +681,11 @@ case 4:
                         }
                     }
                     ranking(suma, cantidadenergias, nombreenergia);
+                    fprintf(SALIDA,"Ranking de emisiones de mayor a menor 2019:\n");
                     printf("Ranking de emisiones de mayor a menor 2019:\n");
                     for (i = 0; i < cantidadenergias; i++)
                     {
+                        fprintf(SALIDA,"%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
                         printf("%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
                     }
                     o=fopen("C:/Users/jiaha/Downloads/Estructura_Generacion_Tecnologias_2019-2020.csv","r");
@@ -722,9 +725,11 @@ case 4:
                             }
                         }
                         ranking(suma2, cantidadenergias, nombreenergia);
+                        fprintf(SALIDA,"\n\nRanking de emisiones de mayor a menor 2020:\n");
                         printf("\n\nRanking de emisiones de mayor a menor 2020:\n");
                         for (i = 0; i < cantidadenergias; i++)
                         {
+                            fprintf(SALIDA,"%s:%.3fGWh", nombreenergia[i].nombre, suma2[i]);
                             printf("%s:%.3fGWh", nombreenergia[i].nombre, suma2[i]);
                         }
                         fclose(o);
@@ -883,9 +888,11 @@ case 4:
                         }
                     }
                     ranking(suma, cantidadenergias, nombreenergia);
+                    fprintf(SALIDA,"Ranking de emisiones de mayor a menor 2021:\n");
                     printf("Ranking de emisiones de mayor a menor 2021:\n");
                     for (i = 0; i < cantidadenergias; i++)
                     {
+                        fprintf(SALIDA,"%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
                         printf("%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
                     }
                     l=fopen("C:/Users/jiaha/Downloads/Estructura_Generacion_Tecnologias_2021-2022.csv","r");
@@ -925,9 +932,11 @@ case 4:
                             }
                         }
                         ranking(suma2, cantidadenergias, nombreenergia);
+                        fprintf(SALIDA,"\n\nRanking de emisiones de mayor a menor 2022:\n");
                         printf("\n\nRanking de emisiones de mayor a menor 2022:\n");
                         for (i = 0; i < cantidadenergias; i++)
                         {
+                            fprintf(SALIDA,"%s:%.3fGWh", nombreenergia[i].nombre, suma2[i]);
                             printf("%s:%.3fGWh", nombreenergia[i].nombre, suma2[i]);
                         }
                         fclose(l);
@@ -1035,137 +1044,223 @@ case 4:
 	}
 
 
-	void minimo(data datos[], int cantidadenergias, nombre nombreenergia[])
-	{
-	    FILE *SALIDA;
-	    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
-	    if (SALIDA==NULL)
+void minimo(data datos[], int cantidadenergias, nombre nombreenergia[])
+{
+    FILE *SALIDA;
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+    if (SALIDA==NULL)
+    {
+        printf("Error al abrir el archivo");
+        return -1;
+    }
+    int i, j, min;
+    for (i=0; i<cantidadenergias; i++)
+    {
+        printf("\n%s\n", nombreenergia[i].nombre);
+        double min_emision = datos[0].emision[i];
+        min = 0;
+        for (j=1;j<24;j++)
         {
-            printf("Error al abrir el archivo");
-            return -1;
+            if (datos[j].emision[i] < min_emision)
+            {
+                min_emision = datos[j].emision[i];
+                min = j;
+            }
         }
-	    int i, j, min;
-	    for (i=0; i<cantidadenergias; i++) {
-	        printf("\n%s\n", nombreenergia[i].nombre);
-	        double min_emision = datos[0].emision[i];
-	        min = 0;
-
-	        for (j=1;j<24;j++) {
-	            if (datos[j].emision[i] < min_emision) {
-	                min_emision = datos[j].emision[i];
-	                min = j;
-	            }
-	        }
-
-	        printf("\t\tMes con menor emisión: %s\n", obtmesano(min + 1));
-	        printf("\t\tEmision del mes: %.3f\n", min_emision);
-
-	        fprintf(SALIDA,"\t\tMes con menor emisión: %s\n", obtmesano(min + 1));
-	        fprintf(SALIDA,"\t\tEmision del mes: %.3f\n", min_emision);
-
-	        double max_emision = datos[0].emision[i];
-	        int max = 0;
-
-	        for (j=1;j<24;j++) {
-	            if (datos[j].emision[i] > max_emision) {
-	                max_emision = datos[j].emision[i];
-	                max = j;
-	            }
-	        }
-
-	        fprintf(SALIDA,"\t\tMes con mayor emisión: %s\n", obtmesano(max + 1));
-	        fprintf(SALIDA,"\t\tEmision del mes: %.3f\n", max_emision);
-
-	        printf("\t\tMes con mayor emisión: %s\n", obtmesano(max + 1));
-	        printf("\t\tEmision del mes: %.3f\n", max_emision);
-
-	        double diferencia = max_emision - min_emision;
-	        printf("\t\tDiferencia: %.3f\n", diferencia);
-
-	        fprintf(SALIDA,"\t\tDiferencia: %.3f\n", diferencia);
-
-	    }
-	    fclose(SALIDA);
-	}
-	const char* obtmesano(int mes)
-	{
-	    switch (mes)
-		{
-	        case 1: return "Enero 2019";
-	        case 2: return "Febrero 2019";
-	        case 3: return "Marzo 2019";
-	        case 4: return "Abril 2019";
-	        case 5: return "Mayo 2019";
-	        case 6: return "Junio 2019";
-	        case 7: return "Julio 2019";
-	        case 8: return "Agosto 2019";
-	        case 9: return "Septiembre 2019";
-	        case 10: return "Octubre 2019";
-	        case 11: return "Noviembre 2019";
-	        case 12: return "Diciembre 2019";
-	        case 13: return "Enero 2020";
-	        case 14: return "Febrero 2020";
-	        case 15: return "Marzo 2020";
-	        case 16: return "Abril 2020";
-	        case 17: return "Mayo 2020";
-	        case 18: return "Junio 2020";
-	        case 19: return "Julio 2020";
-	        case 20: return "Agosto 2020";
-	        case 21: return "Septiembre 2020";
-	        case 22: return "Octubre 2020";
-	        case 23: return "Noviembre 2020";
-			case 24: return "Diciembre 2020";
-	        default: return "Mes inválido";
-	    }
-	}
-	void promedioYporcentaje(data datos[], int cantidadenergias)
-	{
-	    FILE *SALIDA;
-        SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
-        if (SALIDA==NULL)
+        printf("\t\tMes con menor emisión: %s\n", obtmesano(min + 1));
+        printf("\t\tEmision del mes: %.3f\n", min_emision);
+        fprintf(SALIDA,"\t\tMes con menor emisión: %s\n", obtmesano(min + 1));
+        fprintf(SALIDA,"\t\tEmision del mes: %.3f\n", min_emision);
+        double max_emision = datos[0].emision[i];
+        int max = 0;
+        for (j=1;j<24;j++)
         {
-            printf("Error al abrir el archivo");
-            return -1;
+            if (datos[j].emision[i] > max_emision)
+            {
+                max_emision = datos[j].emision[i];
+                max = j;
+            }
         }
-		int i,j;
-	    double promedioAntes = 0.0;
-	    double promedioDespues = 0.0;
-	    int contadorAntes = 0;
-	    int contadorDespues = 0;
+        fprintf(SALIDA,"\t\tMes con mayor emisión: %s\n", obtmesano(max + 1));
+        fprintf(SALIDA,"\t\tEmision del mes: %.3f\n", max_emision);
+        printf("\t\tMes con mayor emisión: %s\n", obtmesano(max + 1));
+        printf("\t\tEmision del mes: %.3f\n", max_emision);
+        double diferencia = max_emision - min_emision;
+        printf("\t\tDiferencia: %.3f\n", diferencia);
+        fprintf(SALIDA,"\t\tDiferencia: %.3f\n", diferencia);
+    }
+    fclose(SALIDA);
+}
+const char* obtmesano(int mes)
+{
+    switch (mes)
+    {
+        case 1:
+        {
+            return "Enero 2019";
+            break;
+        }
+        case 2:
+        {
+            return "Febrero 2019";
+            break;
+        }
+        case 3:
+        {
+            return "Marzo 2019";
+            break;
+        }
+        case 4:
+        {
+            return "Abril 2019";
+            break;
+        }
+        case 5:
+        {
+            return "Mayo 2019";
+            break;
+        }
+        case 6:
+        {
+            return "Junio 2019";
+            break;
+        }
+        case 7:
+        {
+            return "Julio 2019";
+            break;
+        }
+        case 8:
+        {
+            return "Agosto 2019";
+            break;
+        }
 
-	    for (i = 0; i < 12; i++)
-		{
-	        for ( j = 0; j < cantidadenergias; j++)
-			{
-	            promedioAntes += datos[i].emision[j];
-	        }
-	        contadorAntes++;
+        case 9:
+        {
+            return "Septiembre 2019";
+            break;
+        }
+        case 10:
+        {
+            return "Octubre 2019";
+            break;
+        }
+        case 11:
+        {
+            return "Noviembre 2019";
+            break;
+        }
+        case 12:
+        {
+            return "Diciembre 2019";
+            break;
+        }
+        case 13:
+        {
+            return "Enero 2020";
+            break;
+        }
+        case 14:
+        {
+            return "Enero 2020";
+            break;
+        }
+        case 15:
+        {
+            return "Marzo 2020";
+            break;
+        }
+        case 16:
+        {
+            return "Abril 2020";
+            break;
+        }
+        case 17:
+        {
+            return "Mayo 2020";
+            break;
+        }
+        case 18:
+        {
+            return "Junio 2020";
+            break;
+        }
+        case 19:
+        {
+            return "Julio 2020";
+            break;
+        }
+        case 20:
+        {
+            return "Agosto 2020";
+            break;
+        }
+        case 21:
+        {
+            return "Septiembre 2020";
+            break;
+        }
+        case 22:
+        {
+            return "Octubre 2020";
+            break;
+        }
+        case 23:
+        {
+            return "Noviembre 2020";
+            break;
+        }
+        case 24:
+        {
+            return "Diciembre 2020";
+            break;
+        }
+        default:
+        {
+            return "Mes inválido";
 	    }
+	}
 
-	    for (i = 12; i < 24; i++)
-		{
-	        for ( j = 0; j < cantidadenergias; j++)
-			{
-	            promedioDespues += datos[i].emision[j];
-	        }
-	        contadorDespues++;
-	    }
-
+	}
+void promedioYporcentaje(data datos[], int cantidadenergias)
+{
+    FILE *SALIDA;
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+    if (SALIDA==NULL)
+    {
+        printf("Error al abrir el archivo");
+        return -1;
+    }
+    int i,j;
+    double promedioAntes = 0.0;
+    double promedioDespues = 0.0;
+    int contadorAntes = 0;
+    int contadorDespues = 0;
+    for (i = 0; i < 12; i++)
+    {
+        for ( j = 0; j < cantidadenergias; j++)
+        {
+            promedioAntes += datos[i].emision[j];
+        }
+        contadorAntes++;
+    }
+    for (i = 12; i < 24; i++)
+    {
+        for ( j = 0; j < cantidadenergias; j++)
+        {
+            promedioDespues += datos[i].emision[j];
+        }
+        contadorDespues++;
+    }
     promedioAntes /= (contadorAntes * cantidadenergias);
     promedioDespues /= (contadorDespues * cantidadenergias);
     fprintf(SALIDA,"\tPromedio de emision antes del COVID-19: %.3f\n", promedioAntes);
     fprintf(SALIDA,"\tPromedio de emision después del COVID-19: %.3f\n", promedioDespues);
-
-
-
-
     printf("\tPromedio de emision antes del COVID-19: %.3f\n", promedioAntes);
     printf("\tPromedio de emision después del COVID-19: %.3f\n", promedioDespues);
-
     double porcentajeDisminucion = (promedioAntes - promedioDespues) / promedioAntes * 100;
-
     fprintf(SALIDA,"\tPorcentaje de disminución de CO2: %.2f%%\n", porcentajeDisminucion);
-
     printf("\tPorcentaje de disminución de CO2: %.2f%%\n", porcentajeDisminucion);
     fclose(SALIDA);
 }
@@ -1426,6 +1521,13 @@ void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenerg
 /// AQUI ENERGIAS
 void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
+    FILE *SALIDA;
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+    if (SALIDA==NULL)
+    {
+        printf("Error al abrir el archivo");
+        return -1;
+    }
     double porcentajes[17];
     int i,j;
     for ( i = 0; i < 16; i++)
@@ -1436,17 +1538,25 @@ void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre
 
         porcentajes[i] = porcentaje;
     }
-
+    fprintf(SALIDA,"\n\tPorcentaje de cada energia en el total de 2019:\n");
     printf("\n\tPorcentaje de cada energia en el total de 2019:\n");
     for ( i = 0; i < 15; i++)
     {
+        fprintf(SALIDA,"%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
         printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
     }
+    fclose(SALIDA);
 }
 void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
     double porcentajes[17];
-
+    FILE *SALIDA;
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+    if (SALIDA==NULL)
+    {
+        printf("Error al abrir el archivo");
+        return -1;
+    }
     int i,j;
 
     for ( i = 0; i < 16 ;i++)
@@ -1457,19 +1567,27 @@ void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombr
 
         porcentajes[i] = porcentaje;
     }
-
+    fprintf(SALIDA,"\n\tPorcentaje de cada energia en el total de 2020:\n");
     printf("\n\tPorcentaje de cada energia en el total de 2020:\n");
     for (i = 0; i < 15; i++)
     {
+        fprintf(SALIDA,"%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
         printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
     }
+    fclose(SALIDA);
 }
 void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
+
     double porcentajes[17];
-
+    FILE *SALIDA;
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+    if (SALIDA==NULL)
+    {
+        printf("Error al abrir el archivo");
+        return -1;
+    }
     int i,j;
-
     for ( i = 0; i < 16 ;i++)
     {
         double porcentaje = (datos[12].energia3[i] + datos[13].energia3[i] + datos[14].energia3[i] + datos[15].energia3[i] + datos[16].energia3[i] +
@@ -1478,17 +1596,25 @@ void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombr
 
         porcentajes[i] = porcentaje;
     }
-
+    fprintf(SALIDA,"\n\tPorcentaje de cada energia en el total de 2021:\n");
     printf("\n\tPorcentaje de cada energia en el total de 2021:\n");
     for (i = 0; i < 15; i++)
     {
+        fprintf(SALIDA,"%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
         printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
     }
+    fclose(SALIDA);
 }
 void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
     double porcentajes[17];
-
+    FILE *SALIDA;
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+    if (SALIDA==NULL)
+    {
+        printf("Error al abrir el archivo");
+        return -1;
+    }
     int i,j;
 
     for ( i = 0; i < 16 ;i++)
@@ -1499,15 +1625,24 @@ void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombr
 
         porcentajes[i] = porcentaje;
     }
-
+    fprintf(SALIDA,"\n\tPorcentaje de cada energia en el total de 2022:\n");
     printf("\n\tPorcentaje de cada energia en el total de 2022:\n");
     for (i = 0; i < 15; i++)
     {
+        fprintf(SALIDA,"%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
         printf("%s: %.2f%%\n", nombreenergia[i].nombre, porcentajes[i]);
     }
+    fclose(SALIDA);
 }
 void analizarVariacion(float precios[], int numAnos)
 {
+    FILE *SALIDA;
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+    if (SALIDA==NULL)
+    {
+        printf("Error al abrir el archivo");
+        return -1;
+    }
     float variacionTotal=0.0;
 	int i;
     for ( i = 1; i < numAnos; i++) {
@@ -1516,21 +1651,33 @@ void analizarVariacion(float precios[], int numAnos)
 
         if (variacion < 0)
         {
+            fprintf(SALIDA,"El coste de MWh %d a %d: ha dismunuido %.2f%%\n", 2017 + i - 1, 2017 + i, -variacion);
             printf("El coste de MWh %d a %d: ha dismunuido %.2f%%\n", 2017 + i - 1, 2017 + i, -variacion);
         } else {
+            fprintf(SALIDA,"El coste de MWh %d a %d: ha aumentado %.2f%%\n", 2017 + i - 1, 2017 + i, variacion);
             printf("El coste de MWh %d a %d: ha aumentado %.2f%%\n", 2017 + i - 1, 2017 + i, variacion);
         }
     }
 
     if (variacionTotal < 0)
     {
+        fprintf(SALIDA,"El coste de MWh total ha disminuido %.2f%%\n", -variacionTotal);
         printf("El coste de MWh total ha disminuido %.2f%%\n", -variacionTotal);
     } else {
+        fprintf(SALIDA,"El coste de MWh total ha aumentado %.2f%%\n", variacionTotal);
         printf("El coste de MWh total ha aumentado %.2f%%\n", variacionTotal);
     }
+    fclose(SALIDA);
 }
 void calcularPromedio(float precios[], int numAnos)
 {
+    FILE *SALIDA;
+    SALIDA=fopen("C:/Users/Mar/Documents/GitHub/tw_E10X_2022_2023-corto/SALIDA.txt","a");
+    if (SALIDA==NULL)
+    {
+        printf("Error al abrir el archivo");
+        return -1;
+    }
 	int i;
     float sumaPrecios = 0.0;
     for ( i=0;i<numAnos;i++)
@@ -1538,5 +1685,7 @@ void calcularPromedio(float precios[], int numAnos)
         sumaPrecios += precios[i];
     }
     float promedioPrecios = sumaPrecios / numAnos;
+    fprintf(SALIDA,"El promedio de los precios es: %.2f euro/MWh\n", promedioPrecios);
     printf("El promedio de los precios es: %.2f euro/MWh\n", promedioPrecios);
+    fclose(SALIDA);
 }
