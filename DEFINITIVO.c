@@ -96,7 +96,7 @@ int main()
                 fprintf(SALIDA,"Emisiones de CO2 periodo transicion COVID-19\n");
                 dia alarma={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
                 {2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020}};
-                g=fopen("19-20.csv","r");
+                g=fopen("19-20.csv","r");//////AQUIIIIIIIIII
                 if (g==NULL)
                     {
                         printf("Error al abrir el archivo");
@@ -170,7 +170,7 @@ int main()
 
                     dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
                     {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
-                    pf=fopen("21-22.csv","r");
+                    pf=fopen("21-22.csv","r");//////AQUIIIIIIIIII
                     if (pf==NULL)
                     {
                         printf("Error al abrir el archivo");
@@ -231,7 +231,7 @@ int main()
                                     fprintf(SALIDA,"%s:%.3f", nombreenergia[i].nombre, suma[i]);
                                     printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);
                                 }
-                                pf=fopen("21-22.csv","r");
+                                pf=fopen("21-22.csv","r");//////AQUIIIIIIIIII
                                 if (pf==NULL)
                                 {
                                     printf("Error al abrir el archivo");
@@ -313,7 +313,7 @@ case 2:
 {
     nombre nombreenergia[19];
 	FILE *Estructura;
-	Estructura=fopen("Estructura.csv","r");
+	Estructura=fopen("Estructura.csv","r");//////AQUIIIIIIIIII
 	if (Estructura==NULL)
 	{
 		printf("Error al abrir el archivo");
@@ -377,7 +377,7 @@ case 2:
                             fprintf(SALIDA,"%s:%.3f", nombreenergia[i].nombre, suma[i]);
                             printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);
                         }
-                        Estructura=fopen("Estructura.csv","r");
+                        Estructura=fopen("Estructura.csv","r");//////AQUIIIIIIIIII
                         if (Estructura==NULL)
                             {
                                 printf("Error al abrir el archivo");
@@ -417,7 +417,7 @@ case 2:
                         {
                             printf("%s:%.3f", nombreenergia[i].nombre, suma2[i]);
                         }
-                        Estructura=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura.csv","r");
+                        Estructura=fopen("Estructura.csv","r");//////AQUIIIIIIIIII
                         if (Estructura==NULL)
                             {
                                 printf("Error al abrir el archivo");
@@ -457,7 +457,7 @@ case 2:
                         {
                             printf("%s:%.3f", nombreenergia[i].nombre, suma3[i]);
                         }
-                        Estructura=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura.csv","r");
+                        Estructura=fopen("Estructura.csv","r");//////AQUIIIIIIIIII
                         if (Estructura==NULL)
                         {
                             printf("Error al abrir el archivo");
@@ -531,7 +531,7 @@ case 3:
     dia fecha= {{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
     {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,
     2022,2022,2022,2022,2022,2022,2022,2022}};
-	pf=fopen("generacion_por_tecnologias_21_22_puntos_simplificado.csv", "r");
+	pf=fopen("generacion_por_tecnologias_21_22_puntos_simplificado.csv", "r");//////AQUIIIIIIIIII
 
     if (pf == NULL)
     {
@@ -650,7 +650,7 @@ case 4:
 
             dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
             {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
-            o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+            o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");//////AQUIIIIIIIIII
             if (o==NULL)
             {
                 printf("Error al abrir el archivo");
@@ -712,7 +712,7 @@ case 4:
                         fprintf(SALIDA,"%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
                         printf("%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
                     }
-                    o=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+                    o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");//////AQUIIIIIIIIII
                     if (o==NULL)
                     {
                         printf("Error al abrir el archivo");
@@ -762,7 +762,7 @@ case 4:
                 }
                 case 2:
                 {
-                    o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+                    o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");//////AQUIIIIIIIIII
                     if (o==NULL)
                     {
                         printf("Error al abrir el archivo");
@@ -805,7 +805,7 @@ case 4:
                             }
                         }
                         fclose(o);
-                        o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+                        o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");//////AQUIIIIIIIIII
                         if (o==NULL)
                         {
                             printf("Error al abrir el archivo");
@@ -920,7 +920,7 @@ case 4:
                         fprintf(SALIDA,"%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
                         printf("%s:%.3f GWh", nombreenergia[i].nombre, suma[i]);
                     }
-                    l=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+                    l=fopen("Estructura_Generacion_Tecnologias_2021-2022.csv","r");//////AQUIIIIIIIIII
                     if (l==NULL)
                     {
                         printf("Error al abrir el archivo");
@@ -970,7 +970,7 @@ case 4:
                 }
                 case 2:
                 {
-                    l=fopen("Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+                    l=fopen("Estructura_Generacion_Tecnologias_2021-2022.csv","r");//////AQUIIIIIIIIII
                     if (l==NULL)
                     {
                         printf("Error al abrir el archivo");
@@ -1013,7 +1013,7 @@ case 4:
                             }
                         }
                         fclose(l);
-                        l=fopen("Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+                        l=fopen("Estructura_Generacion_Tecnologias_2021-2022.csv","r");//////AQUIIIIIIIIII
                         if (l==NULL)
                         {
                             printf("Error al abrir el archivo");
@@ -1098,7 +1098,7 @@ case 4:
 void minimo(data datos[], int cantidadenergias, nombre nombreenergia[])
 {
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1279,7 +1279,7 @@ const char* obtmesano(int mes)
 void promedioYporcentaje(data datos[], int cantidadenergias)
 {
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1321,7 +1321,7 @@ void promedioYporcentaje(data datos[], int cantidadenergias)
 void mesmax(data datos[],int cantidadenergias,nombre nombreenergia[])
 {
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
 
     int i, j;
     double maxEmision;
@@ -1444,7 +1444,7 @@ const char* obtmes(int mes)
 void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[])
 {
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
 	int i,j;
 	double diferencia;
 	fprintf(SALIDA,"\tLa produccion de CO2 de:\n");
@@ -1539,7 +1539,7 @@ void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenerg
     FILE *SALIDA;
     char texto;
 
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1626,7 +1626,7 @@ void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenerg
 void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1656,7 +1656,7 @@ void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombr
 {
     double porcentajes[17];
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1687,7 +1687,7 @@ void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombr
 
     double porcentajes[17];
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1716,7 +1716,7 @@ void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombr
 {
     double porcentajes[17];
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1744,7 +1744,7 @@ void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombr
 void analizarVariacion(float precios[], int numAnos)
 {
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1784,7 +1784,7 @@ void analizarVariacion(float precios[], int numAnos)
 void calcularPromedio(float precios[], int numAnos)
 {
     FILE *SALIDA;
-    SALIDA=fopen("SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");//////AQUIIIIIIIIII
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
