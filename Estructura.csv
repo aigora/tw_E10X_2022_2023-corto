@@ -1,0 +1,24 @@
+Título,ESTRUCTURA DE LA POTENCIA INSTALADA CON/SIN EMISIONES CO2 EQ._01-01-2019_31-12-2022,,,
+Sistema eléctrico,Nacional,,,
+Magnitudes,%,,,
+ ,,,,
+Fecha,2019,2020,2021,2022
+Hidráulica,15.545,15.414,15.057,14.329
+Turbinación bombeo,3.029,3.003,2.934,2.793
+Nuclear,6.471,6.416,6.269,5.966
+Hidroeólica,0.01,0.01,0.01,0.009
+Eólica,23.345,24.874,25.186,25.179
+Solar fotovoltaica,7.952,10.539,13.466,16.72
+Solar térmica,2.095,2.077,2.029,1.931
+Otras renovables,0.947,0.984,0.963,0.916
+Residuos renovables,0.143,0.142,0.15,0.143
+Sin emisiones de CO2 eq.,59.536,63.46,66.065,67.986
+Carbón,8.804,5.169,3.316,2.904
+Fuel + Gas,0.007,0.007,0.007,0.007
+Motores diésel,0.699,0.693,0.677,0.644
+Turbina de gas,1.044,1.036,1.012,0.963
+Turbina de vapor,0.439,0.435,0.425,0.405
+Ciclo combinado,23.865,23.665,23.122,22.004
+Cogeneración,5.205,5.147,4.984,4.73
+Residuos no renovables,0.402,0.39,0.392,0.357
+Con emisiones de CO2 eq.,40.464,36.54,33.935,32.014

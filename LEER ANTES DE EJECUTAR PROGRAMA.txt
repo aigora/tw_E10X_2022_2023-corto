@@ -1,0 +1,7 @@
+Buenas tardes,
+Este programa ha usado los ficheros .csv donde tendrá que cambiar la ruta de acceso al del usuario que desea verlo ya que dara error al abrir el archivo,
+Debido a la mala organizacion del grupo le pedimos disculpas ya que en el programa hay un error de switch cases que no nos vuelve al panel principal y sigue otro case aparte aunque eventualmente vuelve al inicio,no hemos sido capaces de encontrar el error.
+De este modo hemos adjuntado en la carpeta CODIGOS las opciones:
+2-Estructura(Estructura(1))
+4-Produccion de energia(ENERGIA,ENERGIA2022,PRECIOS)
+los codigos aparte que hemos hecho y que posteriormente lo hemos unido en el Definitivo donde da error de vuelta al panel. Para que pueda calificar la nota de manera mas cómoda.
