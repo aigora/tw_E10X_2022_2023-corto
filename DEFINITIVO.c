@@ -60,7 +60,7 @@ int main()
 {
 	int eleccion;
 	FILE *SALIDA;
-	SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","w");
+	SALIDA=fopen("SALIDA.txt","w");
 	if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -96,7 +96,7 @@ int main()
                 fprintf(SALIDA,"Emisiones de CO2 periodo transicion COVID-19\n");
                 dia alarma={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
                 {2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2019,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020,2020}};
-                g=fopen("C:/Users/jiaha/OneDrive/Escritorio/19-20.csv","r");
+                g=fopen("19-20.csv","r");
                 if (g==NULL)
                     {
                         printf("Error al abrir el archivo");
