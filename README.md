@@ -11,7 +11,4 @@ Vamos a realizar un programa que permita a través de un menú principal intuiti
 
 ## **Objetivos del trabajo**
 
-- Implementar un menú intuitivo que permita a cualquier usuario elegir la tarea que quiera realizar.
-- Utilizar vectores de estructuras para organizar y almacenar los datos del fichero.
-- Utilizar ficheros .csv, tanto para leer como para escribir los datos de la Red Eléctrica Española.
-- Utilizar funciones que nos permitan ejecutar diferentes funcionalidades.
+En este trabajo, nos enfocaremos en analizar y complementar los datos obtenidos de la Red Eléctrica Española en relación a los eventos que han impactado la producción de energía, las emisiones y los costos correspondientes.Nuestro objetivo primordial radica en identificar puntos de inflexión en la producción energética durante estos años críticos. Para ello, desarrollaremos un programa que procese y analice los datos recopilados, empleando técnicas estadísticas y de visualización pertinentes. A través de esta investigación, pretendemos obtener datos estadísticos concluyentes que nos orienten en la formulación de nuestra tesis.
