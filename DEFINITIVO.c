@@ -1,41 +1,65 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 typedef struct nombre
 {
 	char nombre[50];
 }nombre;
+
 typedef struct dia
 {
 	int mes[24];
 	int year[24];
 }dia;
+
 typedef struct data
 {
 	double emision[9];
 	double energia2[9];
 	double energia3[17];
 }data;
+
 typedef struct resultadosguardados
 {
 	nombre energia;
 	dia fecha;
 	double resultados;
 }resultadosguardados;
+
 void minimo(data datos[], int cantidadenergias, nombre nombreenergia[]);
+
 void promedioYporcentaje(data datos[], int cantidadenergias);
+
 const char* obtmesano(int mes);
+
 void ranking(double suma[], int n, nombre nombreenergia[]);
+
 void mesmax(data datos[], int cantidadenergias, nombre nombreenergia[]);
+
 void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[]);
+
 const char* obtmes(int mes);
+
 void rankingEstructuras(double suma[], int n, nombre nombreenergia[]);
+
 void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenergia[]);
+
 void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
+
 void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
+
 void analizarVariacion(float precios[], int numAnos);
+
 void calcularPromedio(float precios[], int numAnos);
+
 void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
+
 void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
+
+void analizarVariacion(float precios[], int numAnos);
+
+void calcularPromedio(float precios[], int numAnos);
+
 int main()
 {
 	int eleccion;
@@ -54,7 +78,6 @@ int main()
 	printf("\n\nQue desesa hacer\n");
 	printf("1-Emisiones CO2\n");
 	printf("2-Estructura de la potencia instalada con y sin CO2\n");
-//	printf("3-Generacion de todos tipos de energias\n");
 	printf("3-Generacion de energias renovables\n");
 	printf("4-Energias producidas\n");
 	printf("5-Salir");
@@ -495,9 +518,6 @@ case 2:
 
 case 3:
 {
-                            //int cual;
-                            //printf("\t3 .1-Generacion 2019-2020");
-                            //printf("\t3 .1-Generacion 2019-2020");//Qué se supone que hace esto?
                             printf("Ha elegido ver la energia renovable producida cada año.\n");
                             fprintf(SALIDA,"Ha elegido ver la energia renovable producida cada año.\n");
 
@@ -1034,15 +1054,42 @@ case 4:
             }
         }
     }
-
+        case 3:
+        {
+            float precios[6] = {60.6,64.4,53.41, 40.38, 118.69, 204.35};
+            int numAnos = sizeof(precios) / sizeof(float);
+            fprintf(SALIDA,"Variacion de coste\n");
+            printf("Variacion de coste\n");
+            analizarVariacion(precios, numAnos);
+            fprintf(SALIDA,"\nLa disminución en los precios de 2019 a 2020 se debió al impacto de la pandemia del COVID-19.\n");
+            fprintf(SALIDA,"El aumento en los precios de 2021 a 2022 se debió a la guerra en Ucrania y sus efectos en el mercado.\n\n");
+            fprintf(SALIDA,"Promedio\n");
+            printf("\nLa disminución en los precios de 2019 a 2020 se debió al impacto de la pandemia del COVID-19.\n");
+            printf("El aumento en los precios de 2021 a 2022 se debió a la guerra en Ucrania y sus efectos en el mercado.\n\n");
+            printf("Promedio\n");
+            calcularPromedio(precios, numAnos);
+        }
+        default:
+        {
+            printf("Opción no valida, volviendo al menú principal");
         }
     }
 }
+        case 5:
+        {
+            printf("Cerrando programa");
+            break;
+        }
+        default:
+        {
+            printf("Opcion no valida, por favor seleccione otra");
+            break;
+        }
+    }
 	}
-		fclose(SALIDA);
+    fclose(SALIDA);
 
-	}
-
+}
 
 void minimo(data datos[], int cantidadenergias, nombre nombreenergia[])
 {
@@ -1091,6 +1138,7 @@ void minimo(data datos[], int cantidadenergias, nombre nombreenergia[])
     }
     fclose(SALIDA);
 }
+
 const char* obtmesano(int mes)
 {
     switch (mes)
@@ -1223,6 +1271,7 @@ const char* obtmesano(int mes)
 	}
 
 	}
+
 void promedioYporcentaje(data datos[], int cantidadenergias)
 {
     FILE *SALIDA;
@@ -1264,6 +1313,7 @@ void promedioYporcentaje(data datos[], int cantidadenergias)
     printf("\tPorcentaje de disminución de CO2: %.2f%%\n", porcentajeDisminucion);
     fclose(SALIDA);
 }
+
 void mesmax(data datos[],int cantidadenergias,nombre nombreenergia[])
 {
     FILE *SALIDA;
@@ -1318,6 +1368,7 @@ void mesmax(data datos[],int cantidadenergias,nombre nombreenergia[])
     }
     fclose(SALIDA);
 }
+
 const char* obtmes(int mes)
 {
     switch (mes)
@@ -1337,6 +1388,7 @@ const char* obtmes(int mes)
         default: return "Mes inválido";
     }
 }
+
 void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[])
 {
     FILE *SALIDA;
@@ -1381,6 +1433,7 @@ void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[])
 	}
 	fclose(SALIDA);
 }
+
 void ranking(double suma[], int n, nombre nombreenergia[])
 {
     int i, j;
@@ -1518,7 +1571,6 @@ void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenerg
 	fclose(SALIDA);
 }
 
-/// AQUI ENERGIAS
 void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
     FILE *SALIDA;
@@ -1547,6 +1599,7 @@ void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre
     }
     fclose(SALIDA);
 }
+
 void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
     double porcentajes[17];
@@ -1576,6 +1629,7 @@ void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombr
     }
     fclose(SALIDA);
 }
+
 void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
 
@@ -1605,6 +1659,7 @@ void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombr
     }
     fclose(SALIDA);
 }
+
 void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
     double porcentajes[17];
@@ -1634,6 +1689,7 @@ void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombr
     }
     fclose(SALIDA);
 }
+
 void analizarVariacion(float precios[], int numAnos)
 {
     FILE *SALIDA;
@@ -1645,7 +1701,8 @@ void analizarVariacion(float precios[], int numAnos)
     }
     float variacionTotal=0.0;
 	int i;
-    for ( i = 1; i < numAnos; i++) {
+    for ( i = 1; i < numAnos; i++)
+    {
         float variacion = ((precios[i]-precios[i-1]) / precios[i - 1]) * 100;
         variacionTotal += variacion;
 
@@ -1653,7 +1710,9 @@ void analizarVariacion(float precios[], int numAnos)
         {
             fprintf(SALIDA,"El coste de MWh %d a %d: ha dismunuido %.2f%%\n", 2017 + i - 1, 2017 + i, -variacion);
             printf("El coste de MWh %d a %d: ha dismunuido %.2f%%\n", 2017 + i - 1, 2017 + i, -variacion);
-        } else {
+        }
+        else
+        {
             fprintf(SALIDA,"El coste de MWh %d a %d: ha aumentado %.2f%%\n", 2017 + i - 1, 2017 + i, variacion);
             printf("El coste de MWh %d a %d: ha aumentado %.2f%%\n", 2017 + i - 1, 2017 + i, variacion);
         }
@@ -1663,12 +1722,15 @@ void analizarVariacion(float precios[], int numAnos)
     {
         fprintf(SALIDA,"El coste de MWh total ha disminuido %.2f%%\n", -variacionTotal);
         printf("El coste de MWh total ha disminuido %.2f%%\n", -variacionTotal);
-    } else {
+    }
+    else
+    {
         fprintf(SALIDA,"El coste de MWh total ha aumentado %.2f%%\n", variacionTotal);
         printf("El coste de MWh total ha aumentado %.2f%%\n", variacionTotal);
     }
     fclose(SALIDA);
 }
+
 void calcularPromedio(float precios[], int numAnos)
 {
     FILE *SALIDA;
@@ -1678,10 +1740,9 @@ void calcularPromedio(float precios[], int numAnos)
         printf("Error al abrir el archivo");
         return -1;
     }
-	int i;
     float sumaPrecios = 0.0;
-    for ( i=0;i<numAnos;i++)
-    {
+    for (int i=0;i<numAnos;i++)
+	{
         sumaPrecios += precios[i];
     }
     float promedioPrecios = sumaPrecios / numAnos;
