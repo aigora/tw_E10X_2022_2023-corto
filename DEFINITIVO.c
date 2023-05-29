@@ -48,10 +48,6 @@ void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre
 
 void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
 
-void analizarVariacion(float precios[], int numAnos);
-
-void calcularPromedio(float precios[], int numAnos);
-
 void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
 
 void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total);
@@ -80,11 +76,13 @@ int main()
 	printf("4-Productividad de energias\n");
 	printf("5-Salir del programa\n");
 	scanf("\n\t%i",&eleccion);
+	printf("\n");
 	switch (eleccion)
 	{
     case 1:
     {
         int COVID;
+        printf("\n");
         printf("1-Emisiones periodo transicion COVID-19\n");
         printf("2-Emisiones estabilidad COVID-19\n");
         scanf("\n\t%i",&COVID);
@@ -132,6 +130,7 @@ int main()
                             }
                         }
                         int vista;
+                        printf("\n");
                         printf("Opciones\n1-Maximos y minimos alcanzados\n2-Comparacion Covid-19");
                         scanf("\n\t%i",&vista);
                         fclose(g);
@@ -212,6 +211,7 @@ int main()
                         int cantidadenergia=9;
                         double suma[9] = {0,0,0,0,0,0,0,0,0};
                         double suma2[9] = {0,0,0,0,0,0,0,0,0};
+                        printf("\n");
                         printf("Opciones disponibles\n1-Clasificacion produccion de CO2\n2-Maximo y minimo emision alcanzado por mes\n3-Progreso respecto CO2\n");
                         scanf("\n%i",&panel);
                         switch (panel)
@@ -355,6 +355,7 @@ case 2:
 					double suma2[19] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 					double suma3[19] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 					double suma4[19] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+					printf("\n");
 					printf("Opciones disponibles\n1-Clasificacion produccion de CO2\n2-Progreso en funcion del CO2\n");
 					scanf("\n%i",&panel);
 					switch (panel)
@@ -579,6 +580,7 @@ case 3:
 				int cantidadenergia=17;
 				double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 				double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+				printf("\n");
 				printf("Opciones disponibles\n1-Energia renovable generada en 2021.\t2-Energia renovable generada en 2022.\t3-Energia renovable generada en un mes a elegir.\n");
 						scanf("\n%i",&panel);
 						switch (panel)
@@ -630,6 +632,7 @@ case 3:
 	}
 case 4:
 {
+	printf("\n");
     int ree;
     printf("1-Produccion de energias 2019/2020\n");
     printf("2-Produccion de energias 2021/2022\n");
@@ -684,6 +687,7 @@ case 4:
             int cantidadenergia=17;
             double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            printf("\n");
             printf("Opciones a disponibles\n1-Clasificacion produccion de Energia\n2-Energia representado en porcentaje\n");
             scanf("\n%i",&panel);
             switch (panel)
@@ -891,6 +895,7 @@ case 4:
             int cantidadenergia=17;
             double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+            printf("\n");
             printf("Opciones disponibles\n1-Clasificacion produccion de Energia\n2-Energia representado en porcentaje\n");
             scanf("\n%i",&panel);
             switch (panel)
@@ -1733,7 +1738,6 @@ void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombr
     }
     fclose(SALIDA);
 }
-
 void analizarVariacion(float precios[], int numAnos)
 {
     FILE *SALIDA;
@@ -1774,7 +1778,6 @@ void analizarVariacion(float precios[], int numAnos)
     }
     fclose(SALIDA);
 }
-
 void calcularPromedio(float precios[], int numAnos)
 {
     FILE *SALIDA;
