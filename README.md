@@ -11,4 +11,7 @@ Vamos a realizar un programa que permita a través de un menú principal intuiti
 
 ## **Objetivos del trabajo**
 
-[Lista de los objetivos que se persiguen con el trabajo propuesto.]
+- Implementar un menú intuitivo que permita a cualquier usuario elegir la tarea que quiera realizar.
+- Utilizar vectores de estructuras para organizar y almacenar los datos del fichero.
+- Utilizar ficheros .csv, tanto para leer como para escribir los datos de la Red Eléctrica Española.
+- Utilizar funciones que nos permitan ejecutar diferentes funcionalidades.
