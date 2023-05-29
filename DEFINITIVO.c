@@ -87,7 +87,7 @@ int main()
         printf("2-Emisiones estabilidad COVID-19\n");
         scanf("\n\t%i",&COVID);
         switch (COVID)
-        
+
         {
             case 1:
             {
@@ -141,15 +141,15 @@ int main()
                             {
                                 fprintf(SALIDA,"Máximo y mínimo de cada mes:\n");
                                 minimo(datos,cantidadenergias,nombreenergia);
-                                
+
                                     float diferenciatotal=datos[0].emision[7]-datos[15].emision[7];
                                     float porcen=(datos[0].emision[7]/datos[15].emision[7])*100;
                                     fprintf(SALIDA,"\nConclusion: La comparacion de emision a principios de año comparado\ncon la llegada del estado de alarma, la emision\nha bajado un total de  %.3f un %.3f%%:",diferenciatotal,porcen);
                                     printf("\nLa comparacion de emision a principios de año comparado\ncon la llegada del estado de alarma, la emision\nha bajado un total de  %.3fun %.3f%%:",diferenciatotal,porcen);
                                     break;
                             }
-                            	
-                            
+
+
                             case 2:
                             {
                                 promedioYporcentaje(datos,cantidadenergias);
@@ -170,7 +170,7 @@ int main()
 
                     dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
                     {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
-                    pf=fopen("C:/Users/jiaha/OneDrive/Escritorio/21-22.csv","r");
+                    pf=fopen("21-22.csv","r");
                     if (pf==NULL)
                     {
                         printf("Error al abrir el archivo");
@@ -231,7 +231,7 @@ int main()
                                     fprintf(SALIDA,"%s:%.3f", nombreenergia[i].nombre, suma[i]);
                                     printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);
                                 }
-                                pf=fopen("C:/Users/jiaha/OneDrive/Escritorio/21-22.csv","r");
+                                pf=fopen("21-22.csv","r");
                                 if (pf==NULL)
                                 {
                                     printf("Error al abrir el archivo");
@@ -313,7 +313,7 @@ case 2:
 {
     nombre nombreenergia[19];
 	FILE *Estructura;
-	Estructura=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura.csv","r");
+	Estructura=fopen("Estructura.csv","r");
 	if (Estructura==NULL)
 	{
 		printf("Error al abrir el archivo");
@@ -377,7 +377,7 @@ case 2:
                             fprintf(SALIDA,"%s:%.3f", nombreenergia[i].nombre, suma[i]);
                             printf("%s:%.3f", nombreenergia[i].nombre, suma[i]);
                         }
-                        Estructura=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura.csv","r");
+                        Estructura=fopen("Estructura.csv","r");
                         if (Estructura==NULL)
                             {
                                 printf("Error al abrir el archivo");
@@ -516,7 +516,7 @@ case 2:
 	fclose(Estructura);
 
 	}
-	
+
 }
 
 case 3:
@@ -531,7 +531,7 @@ case 3:
     dia fecha= {{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
     {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,
     2022,2022,2022,2022,2022,2022,2022,2022}};
-	pf=fopen("C:/Users/jiaha/OneDrive/Escritorio/generacion_por_tecnologias_21_22_puntos_simplificado.csv", "r");
+	pf=fopen("generacion_por_tecnologias_21_22_puntos_simplificado.csv", "r");
 
     if (pf == NULL)
     {
@@ -650,7 +650,7 @@ case 4:
 
             dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
             {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
-            o=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+            o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");
             if (o==NULL)
             {
                 printf("Error al abrir el archivo");
@@ -762,7 +762,7 @@ case 4:
                 }
                 case 2:
                 {
-                    o=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+                    o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");
                     if (o==NULL)
                     {
                         printf("Error al abrir el archivo");
@@ -805,7 +805,7 @@ case 4:
                             }
                         }
                         fclose(o);
-                        o=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura_Generacion_Tecnologias_2019-2020.csv","r");
+                        o=fopen("Estructura_Generacion_Tecnologias_2019-2020.csv","r");
                         if (o==NULL)
                         {
                             printf("Error al abrir el archivo");
@@ -858,7 +858,7 @@ case 4:
 
             dia fecha={{1,2,3,4,5,6,7,8,9,10,11,12,1,2,3,4,5,6,7,8,9,10,11,12},
             {2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2021,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022,2022}};
-            l=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+            l=fopen("Estructura_Generacion_Tecnologias_2021-2022.csv","r");
             if (l==NULL)
             {
                 printf("Error al abrir el archivo");
@@ -970,7 +970,7 @@ case 4:
                 }
                 case 2:
                 {
-                    l=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+                    l=fopen("Estructura_Generacion_Tecnologias_2021-2022.csv","r");
                     if (l==NULL)
                     {
                         printf("Error al abrir el archivo");
@@ -1013,7 +1013,7 @@ case 4:
                             }
                         }
                         fclose(l);
-                        l=fopen("C:/Users/jiaha/OneDrive/Escritorio/Estructura_Generacion_Tecnologias_2021-2022.csv","r");
+                        l=fopen("Estructura_Generacion_Tecnologias_2021-2022.csv","r");
                         if (l==NULL)
                         {
                             printf("Error al abrir el archivo");
@@ -1098,7 +1098,7 @@ case 4:
 void minimo(data datos[], int cantidadenergias, nombre nombreenergia[])
 {
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1279,7 +1279,7 @@ const char* obtmesano(int mes)
 void promedioYporcentaje(data datos[], int cantidadenergias)
 {
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1321,7 +1321,7 @@ void promedioYporcentaje(data datos[], int cantidadenergias)
 void mesmax(data datos[],int cantidadenergias,nombre nombreenergia[])
 {
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
 
     int i, j;
     double maxEmision;
@@ -1444,7 +1444,7 @@ const char* obtmes(int mes)
 void diferencias(data datos[],int cantidadenergias,nombre nombreenergia[])
 {
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
 	int i,j;
 	double diferencia;
 	fprintf(SALIDA,"\tLa produccion de CO2 de:\n");
@@ -1539,7 +1539,7 @@ void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenerg
     FILE *SALIDA;
     char texto;
 
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1626,7 +1626,7 @@ void diferenciasEstructuras(data datos[],int cantidadenergias,nombre nombreenerg
 void calcularPorcentaje(data datos[], int cantidadenergias,double suma2[],nombre nombreenergia[],float total)
 {
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1656,7 +1656,7 @@ void calcularPorcentaje2(data datos[], int cantidadenergias,double suma2[],nombr
 {
     double porcentajes[17];
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1687,7 +1687,7 @@ void calcularPorcentaje3(data datos[], int cantidadenergias,double suma2[],nombr
 
     double porcentajes[17];
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1716,7 +1716,7 @@ void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombr
 {
     double porcentajes[17];
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1744,7 +1744,7 @@ void calcularPorcentaje4(data datos[], int cantidadenergias,double suma2[],nombr
 void analizarVariacion(float precios[], int numAnos)
 {
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
@@ -1784,7 +1784,7 @@ void analizarVariacion(float precios[], int numAnos)
 void calcularPromedio(float precios[], int numAnos)
 {
     FILE *SALIDA;
-    SALIDA=fopen("C:/Users/jiaha/OneDrive/Escritorio/SALIDA.txt","a");
+    SALIDA=fopen("SALIDA.txt","a");
     if (SALIDA==NULL)
     {
         printf("Error al abrir el archivo");
