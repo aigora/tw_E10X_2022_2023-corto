@@ -78,8 +78,8 @@ int main()
 	printf("2-Estructura de la potencia instalada CO2\n");
 	printf("3-Generacion de energias renovables\n");
 	printf("4-Productividad de energias\n");
-	printf("5-Salir del programa");
-	scanf("\t%i",&eleccion);
+	printf("5-Salir del programa\n");
+	scanf("\n\t%i",&eleccion);
 	switch (eleccion)
 	{
     case 1:
@@ -87,7 +87,7 @@ int main()
         int COVID;
         printf("1-Emisiones periodo transicion COVID-19\n");
         printf("2-Emisiones estabilidad COVID-19\n");
-        scanf("\t%i",&COVID);
+        scanf("\n\t%i",&COVID);
         switch (COVID)
         {
             case 1:
@@ -133,7 +133,7 @@ int main()
                         }
                         int vista;
                         printf("Opciones\n1-Maximos y minimos alcanzados\n2-Comparacion Covid-19");
-                        scanf("\t%i",&vista);
+                        scanf("\n\t%i",&vista);
                         fclose(g);
                         switch (vista)
                         {
@@ -143,7 +143,7 @@ int main()
                                 minimo(datos,cantidadenergias,nombreenergia);
                                 int algo;
                                 printf("\nPara ver conclusion pulse 1\n");
-                                scanf("\t%i\n",&algo);
+                                scanf("\n\t%i\n",&algo);
                                 switch(algo)
                                 case 1:
                                 {
@@ -213,7 +213,7 @@ int main()
                         double suma[9] = {0,0,0,0,0,0,0,0,0};
                         double suma2[9] = {0,0,0,0,0,0,0,0,0};
                         printf("Opciones disponibles\n1-Clasificacion produccion de CO2\n2-Maximo y minimo emision alcanzado por mes\n3-Progreso respecto CO2\n");
-                        scanf("%i",&panel);
+                        scanf("\n%i",&panel);
                         switch (panel)
                         {
                             case 1:
@@ -356,7 +356,7 @@ case 2:
 					double suma3[19] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 					double suma4[19] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 					printf("Opciones disponibles\n1-Clasificacion produccion de CO2\n2-Progreso en funcion del CO2\n");
-					scanf("%i",&panel);
+					scanf("\n%i",&panel);
 					switch (panel)
 					{
 					case 1:
@@ -580,7 +580,7 @@ case 3:
 				double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 				double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 				printf("Opciones disponibles\n1-Energia renovable generada en 2021.\t2-Energia renovable generada en 2022.\t3-Energia renovable generada en un mes a elegir.\n");
-						scanf("%i",&panel);
+						scanf("\n%i",&panel);
 						switch (panel)
 									{
 										case 1:
@@ -634,7 +634,7 @@ case 4:
     printf("1-Produccion de energias 2019/2020\n");
     printf("2-Produccion de energias 2021/2022\n");
     printf("3-Variacion del precio del mercado\n");
-    scanf("%i",&ree);
+    scanf("\n%i",&ree);
     switch(ree)
     {
         case 1:
@@ -685,7 +685,7 @@ case 4:
             double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             printf("Opciones a disponibles\n1-Clasificacion produccion de Energia\n2-Energia representado en porcentaje\n");
-            scanf("%i",&panel);
+            scanf("\n%i",&panel);
             switch (panel)
             {
                 case 1:
@@ -892,7 +892,7 @@ case 4:
             double suma[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             double suma2[17] = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
             printf("Opciones disponibles\n1-Clasificacion produccion de Energia\n2-Energia representado en porcentaje\n");
-            scanf("%i",&panel);
+            scanf("\n%i",&panel);
             switch (panel)
             {
                 case 1:
@@ -1785,7 +1785,8 @@ void calcularPromedio(float precios[], int numAnos)
         return -1;
     }
     float sumaPrecios = 0.0;
-    for (int i=0;i<numAnos;i++)
+    int i;
+    for ( i=0;i<numAnos;i++)
 	{
         sumaPrecios += precios[i];
     }
